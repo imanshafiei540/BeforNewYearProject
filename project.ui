@@ -21,7 +21,7 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>60</y>
+      <y>30</y>
       <width>222</width>
       <height>48</height>
      </rect>
@@ -34,13 +34,23 @@
     <property name="geometry">
      <rect>
       <x>460</x>
-      <y>70</y>
+      <y>20</y>
       <width>222</width>
       <height>48</height>
      </rect>
     </property>
     <property name="text">
      <string>ShowMenu</string>
+    </property>
+   </widget>
+   <widget class="QTreeView" name="treeView">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>100</y>
+      <width>611</width>
+      <height>231</height>
+     </rect>
     </property>
    </widget>
   </widget>
