@@ -6,17 +6,44 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>640</width>
-    <height>480</height>
+    <width>716</width>
+    <height>470</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(85, 255, 255);</string>
+   <string notr="true">background-color: rgb(208, 208, 208);</string>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QCommandLinkButton" name="commandLinkButton">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>60</y>
+      <width>222</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>HideMenu</string>
+    </property>
+   </widget>
+   <widget class="QCommandLinkButton" name="commandLinkButton_2">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>70</y>
+      <width>222</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>ShowMenu</string>
+    </property>
+   </widget>
+  </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QToolBar" name="toolBar">
    <property name="windowTitle">
@@ -30,7 +57,7 @@
    </property>
    <property name="iconSize">
     <size>
-     <width>70</width>
+     <width>90</width>
      <height>70</height>
     </size>
    </property>
@@ -40,11 +67,17 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionSettings"/>
+   <addaction name="actionHome"/>
+   <addaction name="actionSettings_2"/>
+   <addaction name="actionSave"/>
+   <addaction name="actionCut"/>
+   <addaction name="actionCopy"/>
+   <addaction name="actionSearch"/>
+   <addaction name="actionExit"/>
   </widget>
   <action name="actionSettings">
    <property name="icon">
-    <iconset resource="../iman.qrc">
+    <iconset>
      <normaloff>:/iman/Downloads/settings1.ico</normaloff>:/iman/Downloads/settings1.ico</iconset>
    </property>
    <property name="text">
@@ -54,9 +87,158 @@
     <string>settings</string>
    </property>
   </action>
+  <action name="actionSettings_2">
+   <property name="icon">
+    <iconset resource="../iman.qrc">
+     <normaloff>:/Project/BeforNewYearProject/settings_icon.svg</normaloff>:/Project/BeforNewYearProject/settings_icon.svg</iconset>
+   </property>
+   <property name="text">
+    <string>settings</string>
+   </property>
+   <property name="toolTip">
+    <string>Settings</string>
+   </property>
+  </action>
+  <action name="actionSearch">
+   <property name="icon">
+    <iconset resource="../iman.qrc">
+     <normaloff>:/Project/BeforNewYearProject/search_icon3.svg</normaloff>:/Project/BeforNewYearProject/search_icon3.svg</iconset>
+   </property>
+   <property name="text">
+    <string>search</string>
+   </property>
+   <property name="toolTip">
+    <string>Search</string>
+   </property>
+  </action>
+  <action name="actionHome">
+   <property name="icon">
+    <iconset resource="../iman.qrc">
+     <normaloff>:/Project/BeforNewYearProject/home_icon.svg</normaloff>:/Project/BeforNewYearProject/home_icon.svg</iconset>
+   </property>
+   <property name="text">
+    <string>home</string>
+   </property>
+   <property name="toolTip">
+    <string>Home</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="icon">
+    <iconset resource="../iman.qrc">
+     <normaloff>:/Project/BeforNewYearProject/save_icon.svg</normaloff>:/Project/BeforNewYearProject/save_icon.svg</iconset>
+   </property>
+   <property name="text">
+    <string>save</string>
+   </property>
+   <property name="toolTip">
+    <string>Save</string>
+   </property>
+  </action>
+  <action name="actionCut">
+   <property name="icon">
+    <iconset resource="../iman.qrc">
+     <normaloff>:/Project/BeforNewYearProject/cut_icon.svg</normaloff>:/Project/BeforNewYearProject/cut_icon.svg</iconset>
+   </property>
+   <property name="text">
+    <string>cut</string>
+   </property>
+   <property name="toolTip">
+    <string>Cut</string>
+   </property>
+  </action>
+  <action name="actionCopy">
+   <property name="icon">
+    <iconset resource="../iman.qrc">
+     <normaloff>:/Project/BeforNewYearProject/copy_icon2.svg</normaloff>:/Project/BeforNewYearProject/copy_icon2.svg</iconset>
+   </property>
+   <property name="text">
+    <string>copy</string>
+   </property>
+   <property name="toolTip">
+    <string>Copy</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="icon">
+    <iconset resource="../iman.qrc">
+     <normaloff>:/Project/BeforNewYearProject/exit_icon.svg</normaloff>:/Project/BeforNewYearProject/exit_icon.svg</iconset>
+   </property>
+   <property name="text">
+    <string>exit</string>
+   </property>
+   <property name="toolTip">
+    <string>Exit</string>
+   </property>
+  </action>
  </widget>
  <resources>
   <include location="../iman.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>actionExit</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>356</x>
+     <y>234</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSettings_2</sender>
+   <signal>triggered()</signal>
+   <receiver>toolBar</receiver>
+   <slot>hide()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>357</x>
+     <y>41</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>commandLinkButton</sender>
+   <signal>clicked()</signal>
+   <receiver>toolBar</receiver>
+   <slot>hide()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>201</x>
+     <y>185</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>312</x>
+     <y>67</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>commandLinkButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>toolBar</receiver>
+   <slot>show()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>546</x>
+     <y>195</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>424</x>
+     <y>75</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
