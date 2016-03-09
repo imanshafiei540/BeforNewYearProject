@@ -1,0 +1,16 @@
+<RCC>
+  <qresource prefix="Project">
+    <file>BeforNewYearProject/exit_icon.svg</file>
+    <file>BeforNewYearProject/copy_icon.svg</file>
+    <file>BeforNewYearProject/copy_icon2.svg</file>
+    <file>BeforNewYearProject/copy_icon3.svg</file>
+    <file>BeforNewYearProject/cut_icon.svg</file>
+    <file>BeforNewYearProject/home_icon.svg</file>
+    <file>BeforNewYearProject/save_icon.svg</file>
+    <file>BeforNewYearProject/search_icon.svg</file>
+    <file>BeforNewYearProject/search_icon2.svg</file>
+    <file>BeforNewYearProject/search_icon3.svg</file>
+    <file>BeforNewYearProject/search_icon4.svg</file>
+    <file>BeforNewYearProject/settings_icon.svg</file>
+  </qresource>
+</RCC>

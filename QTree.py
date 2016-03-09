@@ -4,7 +4,6 @@ from PyQt4 import QtCore
 class Main(QtGui.QTreeView):
 
   def __init__(self):
-
     QtGui.QTreeView.__init__(self)
     model = QtGui.QFileSystemModel()
     model.setRootPath( QtCore.QDir.currentPath() )
