@@ -1,0 +1,1 @@
+http://stackoverflow.com/questions/35900266/adding-treeview-in-a-designed-qtdesigner-ui-with-pyqt4
