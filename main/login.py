@@ -22,7 +22,7 @@ except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
 
-class Ui_MainWindow(object):
+class Ui_MainWindow(QtGui.QMainWindow):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
         MainWindow.resize(716, 470)
@@ -35,9 +35,20 @@ class Ui_MainWindow(object):
         self.commandLinkButton_2 = QtGui.QCommandLinkButton(self.centralwidget)
         self.commandLinkButton_2.setGeometry(QtCore.QRect(460, 20, 222, 48))
         self.commandLinkButton_2.setObjectName(_fromUtf8("commandLinkButton_2"))
+
+
         self.treeView = QtGui.QTreeView(self.centralwidget)
         self.treeView.setGeometry(QtCore.QRect(50, 100, 611, 231))
         self.treeView.setObjectName(_fromUtf8("treeView"))
+
+        self.dirmodel = QtGui.QFileSystemModel()
+        self.dirmodel.setFilter(QtCore.QDir.NoDotAndDotDot | QtCore.QDir.AllDirs)
+        self.folder_view = QtGui.QTreeView(parent=self);
+        self.folder_view.setModel(self.dirmodel)
+        self.folder_view.clicked[QtCore.QModelIndex].connect(self.clicked)
+        self.folder_view.setGeometry(QtCore.QRect(50, 100, 611, 231))
+
+
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtGui.QStatusBar(MainWindow)
         self.statusbar.setObjectName(_fromUtf8("statusbar"))
@@ -124,5 +135,15 @@ class Ui_MainWindow(object):
         self.actionCopy.setToolTip(_translate("MainWindow", "Copy", None))
         self.actionExit.setText(_translate("MainWindow", "exit", None))
         self.actionExit.setToolTip(_translate("MainWindow", "Exit", None))
+    def clicked(self, index):
+        #get selected path of folder_view
+        index = self.selectionModel.currentIndex()
+        dir_path = self.dirmodel.filePath(index)
+        ###############################################
+        #Here's my problem: How do I set the dir_path
+        #for the file_view widget / the filemodel?
+        ###############################################
+        self.filemodel.setRootPath(dir_path)
+
 
 import iman_rc
