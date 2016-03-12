@@ -93,7 +93,7 @@ class Ui_MainWindow(object):
         self.toolBar.addAction(self.actionSearch)
         self.toolBar.addAction(self.actionExit)
 
-        
+
         self.retranslateUi(MainWindow)
         QtCore.QObject.connect(self.actionExit, QtCore.SIGNAL(_fromUtf8("triggered()")), MainWindow.close)
         QtCore.QObject.connect(self.actionSettings_2, QtCore.SIGNAL(_fromUtf8("triggered()")), self.toolBar.hide)
