@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'Project.ui'
+# Form implementation generated from reading ui file 'project.ui'
 #
 # Created by: PyQt4 UI code generator 4.11.4
 #
@@ -22,33 +22,19 @@ except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
 
-class Ui_MainWindow(QtGui.QMainWindow):
+class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
-        MainWindow.resize(716, 470)
+        MainWindow.resize(716, 471)
         MainWindow.setStyleSheet(_fromUtf8("background-color: rgb(208, 208, 208);"))
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
         self.commandLinkButton = QtGui.QCommandLinkButton(self.centralwidget)
-        self.commandLinkButton.setGeometry(QtCore.QRect(0, 30, 222, 48))
+        self.commandLinkButton.setGeometry(QtCore.QRect(30, 10, 131, 48))
         self.commandLinkButton.setObjectName(_fromUtf8("commandLinkButton"))
         self.commandLinkButton_2 = QtGui.QCommandLinkButton(self.centralwidget)
-        self.commandLinkButton_2.setGeometry(QtCore.QRect(460, 20, 222, 48))
+        self.commandLinkButton_2.setGeometry(QtCore.QRect(550, 10, 131, 48))
         self.commandLinkButton_2.setObjectName(_fromUtf8("commandLinkButton_2"))
-
-
-        self.treeView = QtGui.QTreeView(self.centralwidget)
-        self.treeView.setGeometry(QtCore.QRect(50, 100, 611, 231))
-        self.treeView.setObjectName(_fromUtf8("treeView"))
-
-        self.dirmodel = QtGui.QFileSystemModel()
-        self.dirmodel.setFilter(QtCore.QDir.NoDotAndDotDot | QtCore.QDir.AllDirs)
-        self.folder_view = QtGui.QTreeView(parent=self);
-        self.folder_view.setModel(self.dirmodel)
-        self.folder_view.clicked[QtCore.QModelIndex].connect(self.clicked)
-        self.folder_view.setGeometry(QtCore.QRect(50, 100, 611, 231))
-
-
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtGui.QStatusBar(MainWindow)
         self.statusbar.setObjectName(_fromUtf8("statusbar"))
@@ -107,11 +93,12 @@ class Ui_MainWindow(QtGui.QMainWindow):
         self.toolBar.addAction(self.actionSearch)
         self.toolBar.addAction(self.actionExit)
 
+        
         self.retranslateUi(MainWindow)
         QtCore.QObject.connect(self.actionExit, QtCore.SIGNAL(_fromUtf8("triggered()")), MainWindow.close)
         QtCore.QObject.connect(self.actionSettings_2, QtCore.SIGNAL(_fromUtf8("triggered()")), self.toolBar.hide)
-        QtCore.QObject.connect(self.commandLinkButton, QtCore.SIGNAL(_fromUtf8("clicked()")), self.toolBar.hide)
         QtCore.QObject.connect(self.commandLinkButton_2, QtCore.SIGNAL(_fromUtf8("clicked()")), self.toolBar.show)
+        QtCore.QObject.connect(self.commandLinkButton, QtCore.SIGNAL(_fromUtf8("clicked()")), self.toolBar.hide)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -135,15 +122,14 @@ class Ui_MainWindow(QtGui.QMainWindow):
         self.actionCopy.setToolTip(_translate("MainWindow", "Copy", None))
         self.actionExit.setText(_translate("MainWindow", "exit", None))
         self.actionExit.setToolTip(_translate("MainWindow", "Exit", None))
+
     def clicked(self, index):
-        #get selected path of folder_view
         index = self.selectionModel.currentIndex()
         dir_path = self.dirmodel.filePath(index)
-        ###############################################
-        #Here's my problem: How do I set the dir_path
-        #for the file_view widget / the filemodel?
-        ###############################################
         self.filemodel.setRootPath(dir_path)
+
+    def set_path(self):
+        self.dirmodel.setRootPath("")
 
 
 import iman_rc

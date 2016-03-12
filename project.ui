@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>716</width>
-    <height>470</height>
+    <height>471</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,9 +20,9 @@
    <widget class="QCommandLinkButton" name="commandLinkButton">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>30</y>
-      <width>222</width>
+      <x>30</x>
+      <y>10</y>
+      <width>131</width>
       <height>48</height>
      </rect>
     </property>
@@ -33,24 +33,14 @@
    <widget class="QCommandLinkButton" name="commandLinkButton_2">
     <property name="geometry">
      <rect>
-      <x>460</x>
-      <y>20</y>
-      <width>222</width>
+      <x>550</x>
+      <y>10</y>
+      <width>131</width>
       <height>48</height>
      </rect>
     </property>
     <property name="text">
      <string>ShowMenu</string>
-    </property>
-   </widget>
-   <widget class="QTreeView" name="treeView">
-    <property name="geometry">
-     <rect>
-      <x>50</x>
-      <y>100</y>
-      <width>611</width>
-      <height>231</height>
-     </rect>
     </property>
    </widget>
   </widget>
@@ -219,34 +209,34 @@
    </hints>
   </connection>
   <connection>
-   <sender>commandLinkButton</sender>
-   <signal>clicked()</signal>
-   <receiver>toolBar</receiver>
-   <slot>hide()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>201</x>
-     <y>185</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>312</x>
-     <y>67</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>commandLinkButton_2</sender>
    <signal>clicked()</signal>
    <receiver>toolBar</receiver>
    <slot>show()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>546</x>
-     <y>195</y>
+     <x>636</x>
+     <y>140</y>
     </hint>
     <hint type="destinationlabel">
      <x>424</x>
      <y>75</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>commandLinkButton</sender>
+   <signal>clicked()</signal>
+   <receiver>toolBar</receiver>
+   <slot>hide()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>160</x>
+     <y>140</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>312</x>
+     <y>67</y>
     </hint>
    </hints>
   </connection>
