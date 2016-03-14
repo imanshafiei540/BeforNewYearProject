@@ -148,6 +148,9 @@ class Ui_MainWindow(object):
         file.write(PATH)
         file.close()
 
+    def javascript(self):
+
+
 
 import iman_rc
 
