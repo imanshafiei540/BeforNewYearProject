@@ -1,3 +1,3 @@
-C:/eula.1031.txt
-eula.1031.txt
-1
+E:/
+E:
+0
