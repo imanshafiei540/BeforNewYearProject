@@ -7,7 +7,7 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt4 import QtCore, QtGui
-
+from QTree import Main
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
 except AttributeError:
@@ -25,7 +25,7 @@ except AttributeError:
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
-        MainWindow.resize(716, 471)
+        MainWindow.resize(758, 471)
         MainWindow.setStyleSheet(_fromUtf8("background-color: rgb(208, 208, 208);"))
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
@@ -33,8 +33,20 @@ class Ui_MainWindow(object):
         self.commandLinkButton.setGeometry(QtCore.QRect(30, 10, 131, 48))
         self.commandLinkButton.setObjectName(_fromUtf8("commandLinkButton"))
         self.commandLinkButton_2 = QtGui.QCommandLinkButton(self.centralwidget)
-        self.commandLinkButton_2.setGeometry(QtCore.QRect(550, 10, 131, 48))
+        self.commandLinkButton_2.setGeometry(QtCore.QRect(590, 10, 131, 48))
         self.commandLinkButton_2.setObjectName(_fromUtf8("commandLinkButton_2"))
+        self.verticalLayoutWidget = QtGui.QWidget(self.centralwidget)
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(10, 70, 741, 281))
+        self.verticalLayoutWidget.setObjectName(_fromUtf8("verticalLayoutWidget"))
+        self.verticalLayout_4 = QtGui.QVBoxLayout(self.verticalLayoutWidget)
+        self.verticalLayout_4.setObjectName(_fromUtf8("verticalLayout_4"))
+        self.treeView = Main(self.verticalLayoutWidget)
+        self.treeView.setObjectName(_fromUtf8("treeView"))
+        self.verticalLayout_4.addWidget(self.treeView)
+        self.commandLinkButton.raise_()
+        self.commandLinkButton_2.raise_()
+        self.verticalLayoutWidget.raise_()
+        self.treeView.raise_()
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtGui.QStatusBar(MainWindow)
         self.statusbar.setObjectName(_fromUtf8("statusbar"))
@@ -76,6 +88,7 @@ class Ui_MainWindow(object):
         self.actionCut.setIcon(icon5)
         self.actionCut.setObjectName(_fromUtf8("actionCut"))
         self.actionCopy = QtGui.QAction(MainWindow)
+        self.actionCopy.setCheckable(True)
         icon6 = QtGui.QIcon()
         icon6.addPixmap(QtGui.QPixmap(_fromUtf8(":/Project/BeforNewYearProject/copy_icon2.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.actionCopy.setIcon(icon6)
@@ -86,19 +99,25 @@ class Ui_MainWindow(object):
         self.actionExit.setIcon(icon7)
         self.actionExit.setObjectName(_fromUtf8("actionExit"))
         self.toolBar.addAction(self.actionHome)
+        self.toolBar.addSeparator()
         self.toolBar.addAction(self.actionSettings_2)
+        self.toolBar.addSeparator()
         self.toolBar.addAction(self.actionSave)
+        self.toolBar.addSeparator()
         self.toolBar.addAction(self.actionCut)
+        self.toolBar.addSeparator()
         self.toolBar.addAction(self.actionCopy)
+        self.toolBar.addSeparator()
         self.toolBar.addAction(self.actionSearch)
+        self.toolBar.addSeparator()
         self.toolBar.addAction(self.actionExit)
-
 
         self.retranslateUi(MainWindow)
         QtCore.QObject.connect(self.actionExit, QtCore.SIGNAL(_fromUtf8("triggered()")), MainWindow.close)
         QtCore.QObject.connect(self.actionSettings_2, QtCore.SIGNAL(_fromUtf8("triggered()")), self.toolBar.hide)
         QtCore.QObject.connect(self.commandLinkButton_2, QtCore.SIGNAL(_fromUtf8("clicked()")), self.toolBar.show)
         QtCore.QObject.connect(self.commandLinkButton, QtCore.SIGNAL(_fromUtf8("clicked()")), self.toolBar.hide)
+        QtCore.QObject.connect(self.actionCopy, QtCore.SIGNAL(_fromUtf8("triggered()")), self.copy )
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -122,14 +141,22 @@ class Ui_MainWindow(object):
         self.actionCopy.setToolTip(_translate("MainWindow", "Copy", None))
         self.actionExit.setText(_translate("MainWindow", "exit", None))
         self.actionExit.setToolTip(_translate("MainWindow", "Exit", None))
-
-    def clicked(self, index):
-        index = self.selectionModel.currentIndex()
-        dir_path = self.dirmodel.filePath(index)
-        self.filemodel.setRootPath(dir_path)
-
-    def set_path(self):
-        self.dirmodel.setRootPath("")
+    def copy(self):
+        instance = self.treeView
+        PATH = instance.getFilePath()
+        file = open('DB.txt', "w")
+        file.write(PATH)
+        file.close()
 
 
 import iman_rc
+
+if __name__ == "__main__":
+    import sys
+    app = QtGui.QApplication(sys.argv)
+    MainWindow = QtGui.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
+    sys.exit(app.exec_())
+

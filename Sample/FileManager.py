@@ -101,13 +101,9 @@ class MainWindow(QtGui.QMainWindow):
         self.dirmodel.setRootPath("")
 
     def clicked(self, index):
-        #get selected path of folder_view
+
         index = self.selectionModel.currentIndex()
         dir_path = self.dirmodel.filePath(index)
-        ###############################################
-        #Here's my problem: How do I set the dir_path
-        #for the file_view widget / the filemodel?
-        ###############################################
         self.filemodel.setRootPath(dir_path)
 
 

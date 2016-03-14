@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>716</width>
+    <width>758</width>
     <height>471</height>
    </rect>
   </property>
@@ -33,7 +33,7 @@
    <widget class="QCommandLinkButton" name="commandLinkButton_2">
     <property name="geometry">
      <rect>
-      <x>550</x>
+      <x>590</x>
       <y>10</y>
       <width>131</width>
       <height>48</height>
@@ -43,6 +43,25 @@
      <string>ShowMenu</string>
     </property>
    </widget>
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>70</y>
+      <width>741</width>
+      <height>281</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_4">
+     <item>
+      <widget class="Main" name="treeView"/>
+     </item>
+    </layout>
+   </widget>
+   <zorder>commandLinkButton</zorder>
+   <zorder>commandLinkButton_2</zorder>
+   <zorder>verticalLayoutWidget</zorder>
+   <zorder>treeView</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QToolBar" name="toolBar">
@@ -68,11 +87,17 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionHome"/>
+   <addaction name="separator"/>
    <addaction name="actionSettings_2"/>
+   <addaction name="separator"/>
    <addaction name="actionSave"/>
+   <addaction name="separator"/>
    <addaction name="actionCut"/>
+   <addaction name="separator"/>
    <addaction name="actionCopy"/>
+   <addaction name="separator"/>
    <addaction name="actionSearch"/>
+   <addaction name="separator"/>
    <addaction name="actionExit"/>
   </widget>
   <action name="actionSettings">
@@ -89,7 +114,7 @@
   </action>
   <action name="actionSettings_2">
    <property name="icon">
-    <iconset resource="../iman.qrc">
+    <iconset resource="iman.qrc">
      <normaloff>:/Project/BeforNewYearProject/settings_icon.svg</normaloff>:/Project/BeforNewYearProject/settings_icon.svg</iconset>
    </property>
    <property name="text">
@@ -101,7 +126,7 @@
   </action>
   <action name="actionSearch">
    <property name="icon">
-    <iconset resource="../iman.qrc">
+    <iconset resource="iman.qrc">
      <normaloff>:/Project/BeforNewYearProject/search_icon3.svg</normaloff>:/Project/BeforNewYearProject/search_icon3.svg</iconset>
    </property>
    <property name="text">
@@ -113,7 +138,7 @@
   </action>
   <action name="actionHome">
    <property name="icon">
-    <iconset resource="../iman.qrc">
+    <iconset resource="iman.qrc">
      <normaloff>:/Project/BeforNewYearProject/home_icon.svg</normaloff>:/Project/BeforNewYearProject/home_icon.svg</iconset>
    </property>
    <property name="text">
@@ -125,7 +150,7 @@
   </action>
   <action name="actionSave">
    <property name="icon">
-    <iconset resource="../iman.qrc">
+    <iconset resource="iman.qrc">
      <normaloff>:/Project/BeforNewYearProject/save_icon.svg</normaloff>:/Project/BeforNewYearProject/save_icon.svg</iconset>
    </property>
    <property name="text">
@@ -137,7 +162,7 @@
   </action>
   <action name="actionCut">
    <property name="icon">
-    <iconset resource="../iman.qrc">
+    <iconset resource="iman.qrc">
      <normaloff>:/Project/BeforNewYearProject/cut_icon.svg</normaloff>:/Project/BeforNewYearProject/cut_icon.svg</iconset>
    </property>
    <property name="text">
@@ -148,8 +173,11 @@
    </property>
   </action>
   <action name="actionCopy">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="icon">
-    <iconset resource="../iman.qrc">
+    <iconset resource="iman.qrc">
      <normaloff>:/Project/BeforNewYearProject/copy_icon2.svg</normaloff>:/Project/BeforNewYearProject/copy_icon2.svg</iconset>
    </property>
    <property name="text">
@@ -161,7 +189,7 @@
   </action>
   <action name="actionExit">
    <property name="icon">
-    <iconset resource="../iman.qrc">
+    <iconset resource="iman.qrc">
      <normaloff>:/Project/BeforNewYearProject/exit_icon.svg</normaloff>:/Project/BeforNewYearProject/exit_icon.svg</iconset>
    </property>
    <property name="text">
@@ -172,8 +200,15 @@
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>Main</class>
+   <extends>QTreeView</extends>
+   <header location="global">QTree</header>
+  </customwidget>
+ </customwidgets>
  <resources>
-  <include location="../iman.qrc"/>
+  <include location="iman.qrc"/>
  </resources>
  <connections>
   <connection>
@@ -237,6 +272,22 @@
     <hint type="destinationlabel">
      <x>312</x>
      <y>67</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionCopy</sender>
+   <signal>triggered()</signal>
+   <receiver>treeView</receiver>
+   <slot>reset()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>69</x>
+     <y>177</y>
     </hint>
    </hints>
   </connection>
