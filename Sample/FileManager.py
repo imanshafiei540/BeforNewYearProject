@@ -10,18 +10,18 @@ class MainWindow(QtGui.QMainWindow):
 
         self.resize(600, 600)
         self.setWindowTitle('FoVi Sorter')
-        exit = QtGui.QAction('Schließen', self)
-        exit.setShortcut('Ctrl+Q')
-        exit.setStatusTip('Anwendung schließen')
+        exit = QtGui.QAction('show', self)
+        exit.setShortcut('Ctrl+R')
+        exit.setStatusTip('close the program')
         self.connect(exit, QtCore.SIGNAL('triggered()'), QtCore.SLOT('close()'))
-        settings = QtGui.QAction('&Einstellungen', self)
-        settings.setStatusTip('Festlegen von Einstellungen für die Umbennenung der Dateien')
+        settings = QtGui.QAction('Settings', self)
+        settings.setStatusTip('rename')
 
         self.statusBar()
         menubar = self.menuBar()
-        file = menubar.addMenu('&Datei')
+        file = menubar.addMenu('file')
         file.addAction(exit)
-        options = menubar.addMenu('&Optionen')
+        options = menubar.addMenu('option')
         options.addAction(settings)
 
         self.mainWidget = QtGui.QWidget(self)
@@ -30,12 +30,12 @@ class MainWindow(QtGui.QMainWindow):
         self.optionsWidget = QtGui.QWidget(self)
 
         files_list = QtGui.QListWidget()
-        select_path_label = QtGui.QLabel("Zielpfad")
+        select_path_label = QtGui.QLabel("target directory")
         dest_path_edit = QtGui.QLineEdit()
-        select_path = QtGui.QPushButton("Durchsuchen...")
-        description_label = QtGui.QLabel("Zu welchem Anlass wurden die Fotos bzw. Videos aufgenommen?")
+        select_path = QtGui.QPushButton("fehrest")
+        description_label = QtGui.QLabel("be har dalil bara aks va ya film gerefte shod.")
         description_edit = QtGui.QLineEdit()
-        start = QtGui.QPushButton("Kopieren und Umbennen starten")
+        start = QtGui.QPushButton("copy and start to rename")
 
         self.fileBrowserWidget = QtGui.QWidget(self)
 

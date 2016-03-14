@@ -5,11 +5,11 @@
 # Created by: PyQt4 UI code generator 4.11.4
 #
 # WARNING! All changes made in this file will be lost!
-
+from PyQt4.QtGui import QApplication
+from PyQt4.QtCore import QUrl
+from PyQt4.QtWebKit import QWebView
 from PyQt4 import QtCore, QtGui
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
-from QTree import Main
+import  os
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
 except AttributeError:
@@ -24,10 +24,11 @@ except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
 
-class Ui_MainWindow(QWidget):
+class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
-        MainWindow.resize(758, 471)
+        MainWindow.resize(758, 501)
+        MainWindow.setLayoutDirection(QtCore.Qt.LeftToRight)
         MainWindow.setStyleSheet(_fromUtf8("background-color: rgb(208, 208, 208);"))
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
@@ -45,10 +46,21 @@ class Ui_MainWindow(QWidget):
         self.treeView = Main(self.verticalLayoutWidget)
         self.treeView.setObjectName(_fromUtf8("treeView"))
         self.verticalLayout_4.addWidget(self.treeView)
-        self.commandLinkButton.raise_()
-        self.commandLinkButton_2.raise_()
-        self.verticalLayoutWidget.raise_()
-        self.treeView.raise_()
+        self.verticalLayoutWidget_2 = QtGui.QWidget(self.centralwidget)
+        self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(250, 10, 261, 51))
+        self.verticalLayoutWidget_2.setObjectName(_fromUtf8("verticalLayoutWidget_2"))
+        self.verticalLayout = QtGui.QVBoxLayout(self.verticalLayoutWidget_2)
+        self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
+
+        self.webView = QtWebKit.QWebView(self.verticalLayoutWidget_2)
+        self.webView.setUrl(QtCore.QUrl(_fromUtf8("about:blank")))
+        self.webView.setObjectName(_fromUtf8("webView"))
+
+
+
+
+
+        self.verticalLayout.addWidget(self.webView)
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtGui.QStatusBar(MainWindow)
         self.statusbar.setObjectName(_fromUtf8("statusbar"))
@@ -59,6 +71,20 @@ class Ui_MainWindow(QWidget):
         self.toolBar.setIconSize(QtCore.QSize(90, 70))
         self.toolBar.setObjectName(_fromUtf8("toolBar"))
         MainWindow.addToolBar(QtCore.Qt.TopToolBarArea, self.toolBar)
+        self.menuBar = QtGui.QMenuBar(MainWindow)
+        self.menuBar.setGeometry(QtCore.QRect(0, 0, 758, 26))
+        self.menuBar.setObjectName(_fromUtf8("menuBar"))
+        self.menuFile = QtGui.QMenu(self.menuBar)
+        self.menuFile.setObjectName(_fromUtf8("menuFile"))
+        self.menuEdit = QtGui.QMenu(self.menuBar)
+        self.menuEdit.setObjectName(_fromUtf8("menuEdit"))
+        self.menuView = QtGui.QMenu(self.menuBar)
+        self.menuView.setObjectName(_fromUtf8("menuView"))
+        self.menuTools = QtGui.QMenu(self.menuBar)
+        self.menuTools.setObjectName(_fromUtf8("menuTools"))
+        self.menuHelp = QtGui.QMenu(self.menuBar)
+        self.menuHelp.setObjectName(_fromUtf8("menuHelp"))
+        MainWindow.setMenuBar(self.menuBar)
         self.actionSettings = QtGui.QAction(MainWindow)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(_fromUtf8(":/iman/Downloads/settings1.ico")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -113,25 +139,33 @@ class Ui_MainWindow(QWidget):
         self.toolBar.addAction(self.actionSearch)
         self.toolBar.addSeparator()
         self.toolBar.addAction(self.actionExit)
-
-        self.treeView.setContextMenuPolicy(Qt.CustomContextMenu)
-        self.treeView.customContextMenuRequested.connect(self.openMenu)
+        self.menuBar.addAction(self.menuFile.menuAction())
+        self.menuBar.addAction(self.menuEdit.menuAction())
+        self.menuBar.addAction(self.menuView.menuAction())
+        self.menuBar.addAction(self.menuTools.menuAction())
+        self.menuBar.addAction(self.menuHelp.menuAction())
 
         self.retranslateUi(MainWindow)
         QtCore.QObject.connect(self.actionExit, QtCore.SIGNAL(_fromUtf8("triggered()")), MainWindow.close)
         QtCore.QObject.connect(self.actionSettings_2, QtCore.SIGNAL(_fromUtf8("triggered()")), self.toolBar.hide)
         QtCore.QObject.connect(self.commandLinkButton_2, QtCore.SIGNAL(_fromUtf8("clicked()")), self.toolBar.show)
         QtCore.QObject.connect(self.commandLinkButton, QtCore.SIGNAL(_fromUtf8("clicked()")), self.toolBar.hide)
-        QtCore.QObject.connect(self.actionCopy, QtCore.SIGNAL(_fromUtf8("triggered()")), self.copy )
-        QtCore.QObject.connect(self.actionSave, QtCore.SIGNAL(_fromUtf8("clicked()")), self.paste() )
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        QtCore.QObject.connect(self.actionCopy, QtCore.SIGNAL(_fromUtf8("triggered(bool)")), self.copy)
+        QtCore.QObject.connect(self.actionSave, QtCore.SIGNAL(_fromUtf8("triggered(bool)")), self.paste)
+        QtCore.QObject.connect(self.actionCut, QtCore.SIGNAL(_fromUtf8("triggered(bool)")), self.cut)
 
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow", None))
         self.commandLinkButton.setText(_translate("MainWindow", "HideMenu", None))
         self.commandLinkButton_2.setText(_translate("MainWindow", "ShowMenu", None))
         self.toolBar.setWindowTitle(_translate("MainWindow", "toolBar", None))
+        self.menuFile.setTitle(_translate("MainWindow", "File", None))
+        self.menuEdit.setTitle(_translate("MainWindow", "Edit", None))
+        self.menuView.setTitle(_translate("MainWindow", "View", None))
+        self.menuTools.setTitle(_translate("MainWindow", "Tools", None))
+        self.menuHelp.setTitle(_translate("MainWindow", "Help", None))
         self.actionSettings.setText(_translate("MainWindow", "settings", None))
         self.actionSettings.setToolTip(_translate("MainWindow", "settings", None))
         self.actionSettings_2.setText(_translate("MainWindow", "settings", None))
@@ -149,51 +183,89 @@ class Ui_MainWindow(QWidget):
         self.actionExit.setText(_translate("MainWindow", "exit", None))
         self.actionExit.setToolTip(_translate("MainWindow", "Exit", None))
 
-    def openMenu(self, position):
+    def copyScript(self):
+        self.webView.load(QUrl('copy.html'))
+        print 1
+    def cutScript(self):
+        self.webView.load(QUrl('cut.html'))
+    def pasteScript(self):
+        self.webView.load(QUrl('paste.html'))
 
-        menu = QMenu()
 
-        menu.addAction(self.tr("cut"))
-        menu.addAction(self.tr("copy"))
-        menu.addAction(self.tr("paste"))
-        menu.addAction(self.tr("delete"))
-
-        menu.exec_(self.treeView.viewport().mapToGlobal(position))
 
 
 
     def copy(self):
+        print "copy"
         instance = self.treeView
         PATH = instance.getFilePath()
         file = open('DB.txt', "w")
         file.write(PATH)
         NAME = instance.getFileName()
+        file.write("\n")
         file.write(NAME)
+        file.write("\n")
+        file.write("0")
         file.close()
+        self.copyScript()
+
+
+    def cut(self):
+        print "cut"
+        instance = self.treeView
+        PATH = instance.getFilePath()
+        file = open('DB.txt', "w")
+        file.write(PATH)
+        NAME = instance.getFileName()
+        file.write("\n")
+        file.write(NAME)
+        file.write("\n")
+        file.write("1")
+        file.close()
+        self.cutScript()
+
     def paste(self):
+        print "paste"
         instance = self.treeView
         lastPATH = instance.getFilePath()
         file=open('DB.txt',"r")
         try:
-            firstPATH=file.readline()
-            NAME=file.readline()
-            if (os.path.isfile(firstPATH)):
-                os.system("copy "+str(firstPATH)+" "+str(lastPATH))
-            else:
-                os.system("md"+str(lastPATH)+str(NAME))
-                os.system("copy "+str(firstPATH)+str(NAME)+" "+str(lastPATH))
-            file.close()
+            firstPATH=file.readline().strip()
+            NAME=file.readline().strip()
+            mode=file.readline()
+            firstPATH=firstPATH.replace("/",'\\')
+            lastPATH=str(lastPATH).replace("/",'\\')
+            print firstPATH
+            print NAME
+            if(int(mode)==0):
+                print "copy"
+                if (os.path.isfile(str(firstPATH))):
+                    print "file"
+                    os.system("copy "+str(firstPATH)+" "+str(lastPATH))
+                    print "copy "+str(firstPATH)+" "+str(lastPATH)
+                else:
+                    print "foldere"
+                    os.system("md "+str(lastPATH)+'\\'+str(NAME))
+                    print "md "+str(lastPATH)+'\\'+str(NAME)
+                    os.system("copy "+str(firstPATH)+" "+str(lastPATH)+"\\"+str(NAME))
+                    print "copy "+str(firstPATH)+" "+str(lastPATH)+"\\"+str(NAME)
+                file.close()
+            elif(int(mode)==1):
+                print "cut"
+                os.system("move "+str(firstPATH)+" "+str(lastPATH))
+                print "move "+str(firstPATH)+" "+str(lastPATH)
+                file.close()
         except:
-            pass
+            print "exception"
+
+        self.pasteScript()
 
 
 
 
 
-    def javascript(self):
-
-
-
+from PyQt4 import QtWebKit
+from QTree import Main
 import iman_rc
 
 if __name__ == "__main__":

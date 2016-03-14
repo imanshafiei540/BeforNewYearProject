@@ -1,16 +1,10 @@
 <RCC>
-  <qresource prefix="Project">
-    <file>save_icon.svg</file>
-    <file>search_icon.svg</file>
-    <file>search_icon2.svg</file>
-    <file>search_icon3.svg</file>
-    <file>search_icon4.svg</file>
-    <file>settings_icon.svg</file>
-    <file>BeforNewYearProject/exit_icon.svg</file>
+  <qresource prefix="kaz">
     <file>BeforNewYearProject/copy_icon.svg</file>
     <file>BeforNewYearProject/copy_icon2.svg</file>
     <file>BeforNewYearProject/copy_icon3.svg</file>
     <file>BeforNewYearProject/cut_icon.svg</file>
+    <file>BeforNewYearProject/exit_icon.svg</file>
     <file>BeforNewYearProject/home_icon.svg</file>
     <file>BeforNewYearProject/save_icon.svg</file>
     <file>BeforNewYearProject/search_icon.svg</file>

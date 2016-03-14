@@ -1,15 +1,13 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'project.ui'
+# Form implementation generated from reading ui file 'Project.ui'
 #
 # Created by: PyQt4 UI code generator 4.11.4
 #
 # WARNING! All changes made in this file will be lost!
 
 from PyQt4 import QtCore, QtGui
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
-from QTree import Main
+
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
 except AttributeError:
@@ -24,31 +22,33 @@ except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
 
-class Ui_MainWindow(QWidget):
+class Ui_MainWindow(QtGui.QMainWindow):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
-        MainWindow.resize(758, 471)
+        MainWindow.resize(716, 470)
         MainWindow.setStyleSheet(_fromUtf8("background-color: rgb(208, 208, 208);"))
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
         self.commandLinkButton = QtGui.QCommandLinkButton(self.centralwidget)
-        self.commandLinkButton.setGeometry(QtCore.QRect(30, 10, 131, 48))
+        self.commandLinkButton.setGeometry(QtCore.QRect(0, 30, 222, 48))
         self.commandLinkButton.setObjectName(_fromUtf8("commandLinkButton"))
         self.commandLinkButton_2 = QtGui.QCommandLinkButton(self.centralwidget)
-        self.commandLinkButton_2.setGeometry(QtCore.QRect(590, 10, 131, 48))
+        self.commandLinkButton_2.setGeometry(QtCore.QRect(460, 20, 222, 48))
         self.commandLinkButton_2.setObjectName(_fromUtf8("commandLinkButton_2"))
-        self.verticalLayoutWidget = QtGui.QWidget(self.centralwidget)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(10, 70, 741, 281))
-        self.verticalLayoutWidget.setObjectName(_fromUtf8("verticalLayoutWidget"))
-        self.verticalLayout_4 = QtGui.QVBoxLayout(self.verticalLayoutWidget)
-        self.verticalLayout_4.setObjectName(_fromUtf8("verticalLayout_4"))
-        self.treeView = Main(self.verticalLayoutWidget)
+
+
+        self.treeView = QtGui.QTreeView(self.centralwidget)
+        self.treeView.setGeometry(QtCore.QRect(50, 100, 611, 231))
         self.treeView.setObjectName(_fromUtf8("treeView"))
-        self.verticalLayout_4.addWidget(self.treeView)
-        self.commandLinkButton.raise_()
-        self.commandLinkButton_2.raise_()
-        self.verticalLayoutWidget.raise_()
-        self.treeView.raise_()
+
+        self.dirmodel = QtGui.QFileSystemModel()
+        self.dirmodel.setFilter(QtCore.QDir.NoDotAndDotDot | QtCore.QDir.AllDirs)
+        self.folder_view = QtGui.QTreeView(parent=self);
+        self.folder_view.setModel(self.dirmodel)
+        self.folder_view.clicked[QtCore.QModelIndex].connect(self.clicked)
+        self.folder_view.setGeometry(QtCore.QRect(50, 100, 611, 231))
+
+
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtGui.QStatusBar(MainWindow)
         self.statusbar.setObjectName(_fromUtf8("statusbar"))
@@ -90,7 +90,6 @@ class Ui_MainWindow(QWidget):
         self.actionCut.setIcon(icon5)
         self.actionCut.setObjectName(_fromUtf8("actionCut"))
         self.actionCopy = QtGui.QAction(MainWindow)
-        self.actionCopy.setCheckable(True)
         icon6 = QtGui.QIcon()
         icon6.addPixmap(QtGui.QPixmap(_fromUtf8(":/Project/BeforNewYearProject/copy_icon2.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.actionCopy.setIcon(icon6)
@@ -101,31 +100,19 @@ class Ui_MainWindow(QWidget):
         self.actionExit.setIcon(icon7)
         self.actionExit.setObjectName(_fromUtf8("actionExit"))
         self.toolBar.addAction(self.actionHome)
-        self.toolBar.addSeparator()
         self.toolBar.addAction(self.actionSettings_2)
-        self.toolBar.addSeparator()
         self.toolBar.addAction(self.actionSave)
-        self.toolBar.addSeparator()
         self.toolBar.addAction(self.actionCut)
-        self.toolBar.addSeparator()
         self.toolBar.addAction(self.actionCopy)
-        self.toolBar.addSeparator()
         self.toolBar.addAction(self.actionSearch)
-        self.toolBar.addSeparator()
         self.toolBar.addAction(self.actionExit)
-
-        self.treeView.setContextMenuPolicy(Qt.CustomContextMenu)
-        self.treeView.customContextMenuRequested.connect(self.openMenu)
 
         self.retranslateUi(MainWindow)
         QtCore.QObject.connect(self.actionExit, QtCore.SIGNAL(_fromUtf8("triggered()")), MainWindow.close)
         QtCore.QObject.connect(self.actionSettings_2, QtCore.SIGNAL(_fromUtf8("triggered()")), self.toolBar.hide)
-        QtCore.QObject.connect(self.commandLinkButton_2, QtCore.SIGNAL(_fromUtf8("clicked()")), self.toolBar.show)
         QtCore.QObject.connect(self.commandLinkButton, QtCore.SIGNAL(_fromUtf8("clicked()")), self.toolBar.hide)
-        QtCore.QObject.connect(self.actionCopy, QtCore.SIGNAL(_fromUtf8("triggered()")), self.copy )
-        QtCore.QObject.connect(self.actionSave, QtCore.SIGNAL(_fromUtf8("clicked()")), self.paste() )
+        QtCore.QObject.connect(self.commandLinkButton_2, QtCore.SIGNAL(_fromUtf8("clicked()")), self.toolBar.show)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
-
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow", None))
@@ -148,60 +135,10 @@ class Ui_MainWindow(QWidget):
         self.actionCopy.setToolTip(_translate("MainWindow", "Copy", None))
         self.actionExit.setText(_translate("MainWindow", "exit", None))
         self.actionExit.setToolTip(_translate("MainWindow", "Exit", None))
-
-    def openMenu(self, position):
-
-        menu = QMenu()
-
-        menu.addAction(self.tr("cut"))
-        menu.addAction(self.tr("copy"))
-        menu.addAction(self.tr("paste"))
-        menu.addAction(self.tr("delete"))
-
-        menu.exec_(self.treeView.viewport().mapToGlobal(position))
-
-
-
-    def copy(self):
-        instance = self.treeView
-        PATH = instance.getFilePath()
-        file = open('DB.txt', "w")
-        file.write(PATH)
-        NAME = instance.getFileName()
-        file.write(NAME)
-        file.close()
-    def paste(self):
-        instance = self.treeView
-        lastPATH = instance.getFilePath()
-        file=open('DB.txt',"r")
-        try:
-            firstPATH=file.readline()
-            NAME=file.readline()
-            if (os.path.isfile(firstPATH)):
-                os.system("copy "+str(firstPATH)+" "+str(lastPATH))
-            else:
-                os.system("md"+str(lastPATH)+str(NAME))
-                os.system("copy "+str(firstPATH)+str(NAME)+" "+str(lastPATH))
-            file.close()
-        except:
-            pass
-
-
-
-
-
-    def javascript(self):
-
+    def clicked(self, index):
+        index = self.selectionModel.currentIndex()
+        dir_path = self.dirmodel.filePath(index)
+        self.filemodel.setRootPath(dir_path)
 
 
 import iman_rc
-
-if __name__ == "__main__":
-    import sys
-    app = QtGui.QApplication(sys.argv)
-    MainWindow = QtGui.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
-    sys.exit(app.exec_())
-
