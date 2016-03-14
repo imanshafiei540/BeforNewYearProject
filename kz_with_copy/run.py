@@ -118,7 +118,7 @@ class Ui_MainWindow(object):
         QtCore.QObject.connect(self.commandLinkButton_2, QtCore.SIGNAL(_fromUtf8("clicked()")), self.toolBar.show)
         QtCore.QObject.connect(self.commandLinkButton, QtCore.SIGNAL(_fromUtf8("clicked()")), self.toolBar.hide)
         QtCore.QObject.connect(self.actionCopy, QtCore.SIGNAL(_fromUtf8("triggered()")), self.copy )
-        QtCore.QObject.connect(self.actionSave, QtCore.SIGNAL(_fromUtf8("clicked()")), self.paste() )
+        QtCore.QObject.connect(self.actionSave, QtCore.SIGNAL(_fromUtf8("clicked()")), self.paste )
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):

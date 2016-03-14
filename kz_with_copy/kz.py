@@ -7,7 +7,8 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt4 import QtCore, QtGui
-from QTree import Main
+import os
+
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
 except AttributeError:
@@ -43,10 +44,6 @@ class Ui_MainWindow(object):
         self.treeView = Main(self.verticalLayoutWidget)
         self.treeView.setObjectName(_fromUtf8("treeView"))
         self.verticalLayout_4.addWidget(self.treeView)
-        self.commandLinkButton.raise_()
-        self.commandLinkButton_2.raise_()
-        self.verticalLayoutWidget.raise_()
-        self.treeView.raise_()
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtGui.QStatusBar(MainWindow)
         self.statusbar.setObjectName(_fromUtf8("statusbar"))
@@ -78,6 +75,7 @@ class Ui_MainWindow(object):
         self.actionHome.setIcon(icon3)
         self.actionHome.setObjectName(_fromUtf8("actionHome"))
         self.actionSave = QtGui.QAction(MainWindow)
+        self.actionSave.setCheckable(False)
         icon4 = QtGui.QIcon()
         icon4.addPixmap(QtGui.QPixmap(_fromUtf8(":/Project/BeforNewYearProject/save_icon.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.actionSave.setIcon(icon4)
@@ -88,7 +86,7 @@ class Ui_MainWindow(object):
         self.actionCut.setIcon(icon5)
         self.actionCut.setObjectName(_fromUtf8("actionCut"))
         self.actionCopy = QtGui.QAction(MainWindow)
-        self.actionCopy.setCheckable(True)
+        self.actionCopy.setCheckable(False)
         icon6 = QtGui.QIcon()
         icon6.addPixmap(QtGui.QPixmap(_fromUtf8(":/Project/BeforNewYearProject/copy_icon2.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.actionCopy.setIcon(icon6)
@@ -117,8 +115,10 @@ class Ui_MainWindow(object):
         QtCore.QObject.connect(self.actionSettings_2, QtCore.SIGNAL(_fromUtf8("triggered()")), self.toolBar.hide)
         QtCore.QObject.connect(self.commandLinkButton_2, QtCore.SIGNAL(_fromUtf8("clicked()")), self.toolBar.show)
         QtCore.QObject.connect(self.commandLinkButton, QtCore.SIGNAL(_fromUtf8("clicked()")), self.toolBar.hide)
-        QtCore.QObject.connect(self.actionCopy, QtCore.SIGNAL(_fromUtf8("triggered()")), self.copy )
-        QtCore.QObject.connect(self.actionSave, QtCore.SIGNAL(_fromUtf8("clicked()")), self.paste() )
+        QtCore.QObject.connect(self.actionCopy, QtCore.SIGNAL(_fromUtf8("triggered(bool)")), self.copy)
+        QtCore.QObject.connect(self.actionSave, QtCore.SIGNAL(_fromUtf8("triggered(bool)")), self.paste)
+        QtCore.QObject.connect(self.actionCut, QtCore.SIGNAL(_fromUtf8("triggered(bool)")), self.cut)
+
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -143,34 +143,66 @@ class Ui_MainWindow(object):
         self.actionExit.setText(_translate("MainWindow", "exit", None))
         self.actionExit.setToolTip(_translate("MainWindow", "Exit", None))
     def copy(self):
+        print "copy"
         instance = self.treeView
         PATH = instance.getFilePath()
         file = open('DB.txt', "w")
         file.write(PATH)
         NAME = instance.getFileName()
+        file.write("\n")
         file.write(NAME)
+        file.write("\n")
+        file.write("0")
         file.close()
+    def cut(self):
+        print "cut"
+        instance = self.treeView
+        PATH = instance.getFilePath()
+        file = open('DB.txt', "w")
+        file.write(PATH)
+        NAME = instance.getFileName()
+        file.write("\n")
+        file.write(NAME)
+        file.write("\n")
+        file.write("1")
+        file.close()
+
     def paste(self):
+        print "paste"
         instance = self.treeView
         lastPATH = instance.getFilePath()
         file=open('DB.txt',"r")
         try:
-            firstPATH=file.readline()
-            NAME=file.readline()
-            if (os.path.isfile(firstPATH)):
-                os.system("copy "+str(firstPATH)+" "+str(lastPATH))
-            else:
-                os.system("md"+str(lastPATH)+str(NAME))
-                os.system("copy "+str(firstPATH)+str(NAME)+" "+str(lastPATH))
-            file.close()
+            firstPATH=file.readline().strip()
+            NAME=file.readline().strip()
+            mode=file.readline()
+            firstPATH=firstPATH.replace("/",'\\')
+            lastPATH=str(lastPATH).replace("/",'\\')
+            print firstPATH
+            print NAME
+            if(int(mode)==0):
+                print "copy"
+                if (os.path.isfile(str(firstPATH))):
+                    print "file"
+                    os.system("copy "+str(firstPATH)+" "+str(lastPATH))
+                    print "copy "+str(firstPATH)+" "+str(lastPATH)
+                else:
+                    print "foldere"
+                    os.system("md "+str(lastPATH)+'\\'+str(NAME))
+                    print "md "+str(lastPATH)+'\\'+str(NAME)
+                    os.system("copy "+str(firstPATH)+" "+str(lastPATH)+"\\"+str(NAME))
+                    print "copy "+str(firstPATH)+" "+str(lastPATH)+"\\"+str(NAME)
+                file.close()
+            elif(int(mode)==1):
+                print "cut"
+                os.system("move "+str(firstPATH)+" "+str(lastPATH))
+                print "move "+str(firstPATH)+" "+str(lastPATH)
+                file.close()
         except:
-            pass
+            print "exception"
 
 
-
-
-
-
+from QTree import Main
 import iman_rc
 
 if __name__ == "__main__":

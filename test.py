@@ -1,0 +1,13 @@
+from PyQt4 import QtCore, QtGui
+app = QtGui.QApplication([])
+mainWindow=QtGui.QMainWindow()
+mainWidget=QtGui.QWidget()
+mainWindow.setCentralWidget(mainWidget)
+mainLayout = QtGui.QVBoxLayout()
+mainWidget.setLayout(mainLayout)
+mainWindow.setStyleSheet('QWidget { font: bold italic large "Times New Roman" }')
+tree=QtGui.QTreeWidget()
+tree.setHeaderLabels(['One','Two','Tree','Four','Five'])
+mainLayout.addWidget(tree)
+mainWindow.show()
+sys.exit(app.exec_())
