@@ -7,6 +7,8 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt4 import QtCore, QtGui
+from PyQt4.QtCore import *
+from PyQt4.QtGui import *
 from QTree import Main
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -22,7 +24,7 @@ except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
 
-class Ui_MainWindow(object):
+class Ui_MainWindow(QWidget):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
         MainWindow.resize(758, 471)
@@ -112,6 +114,9 @@ class Ui_MainWindow(object):
         self.toolBar.addSeparator()
         self.toolBar.addAction(self.actionExit)
 
+        self.treeView.setContextMenuPolicy(Qt.CustomContextMenu)
+        self.treeView.customContextMenuRequested.connect(self.openMenu)
+
         self.retranslateUi(MainWindow)
         QtCore.QObject.connect(self.actionExit, QtCore.SIGNAL(_fromUtf8("triggered()")), MainWindow.close)
         QtCore.QObject.connect(self.actionSettings_2, QtCore.SIGNAL(_fromUtf8("triggered()")), self.toolBar.hide)
@@ -119,6 +124,7 @@ class Ui_MainWindow(object):
         QtCore.QObject.connect(self.commandLinkButton, QtCore.SIGNAL(_fromUtf8("clicked()")), self.toolBar.hide)
         QtCore.QObject.connect(self.actionCopy, QtCore.SIGNAL(_fromUtf8("triggered()")), self.copy )
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow", None))
@@ -141,6 +147,20 @@ class Ui_MainWindow(object):
         self.actionCopy.setToolTip(_translate("MainWindow", "Copy", None))
         self.actionExit.setText(_translate("MainWindow", "exit", None))
         self.actionExit.setToolTip(_translate("MainWindow", "Exit", None))
+
+    def openMenu(self, position):
+
+        menu = QMenu()
+
+        menu.addAction(self.tr("cut"))
+        menu.addAction(self.tr("copy"))
+        menu.addAction(self.tr("paste"))
+        menu.addAction(self.tr("delete"))
+
+        menu.exec_(self.treeView.viewport().mapToGlobal(position))
+
+
+
     def copy(self):
         instance = self.treeView
         PATH = instance.getFilePath()

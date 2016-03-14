@@ -47,22 +47,12 @@ class Window(QWidget):
 
     def openMenu(self, position):
 
-        indexes = self.treeView.selectedIndexes()
-        if len(indexes) > 0:
-
-            level = 0
-            index = indexes[0]
-            while index.parent().isValid():
-                index = index.parent()
-                level += 1
-
         menu = QMenu()
-        if level == 0:
-            menu.addAction(self.tr("Edit person"))
-        elif level == 1:
-            menu.addAction(self.tr("Edit object/container"))
-        elif level == 2:
-            menu.addAction(self.tr("Edit object"))
+
+        menu.addAction(self.tr("cut"))
+        menu.addAction(self.tr("copy"))
+        menu.addAction(self.tr("paste"))
+        menu.addAction(self.tr("delete"))
 
         menu.exec_(self.treeView.viewport().mapToGlobal(position))
 
