@@ -11,6 +11,7 @@ from PyQt4.QtGui import QApplication
 from PyQt4.QtCore import QUrl
 from PyQt4.QtWebKit import QWebView
 from PyQt4 import QtCore, QtGui
+from search import Search
 import os
 
 try:
@@ -170,6 +171,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         QtCore.QObject.connect(self.actionExit, QtCore.SIGNAL(_fromUtf8("triggered()")), MainWindow.close)
         QtCore.QObject.connect(self.actionSettings_2, QtCore.SIGNAL(_fromUtf8("triggered()")), self.toolBar.hide)
+        QtCore.QObject.connect(self.actionSearch, QtCore.SIGNAL(_fromUtf8("triggered()")), self.openSearch)
         QtCore.QObject.connect(self.commandLinkButton_2, QtCore.SIGNAL(_fromUtf8("clicked()")), self.toolBar.show)
         QtCore.QObject.connect(self.commandLinkButton, QtCore.SIGNAL(_fromUtf8("clicked()")), self.toolBar.hide)
         QtCore.QObject.connect(self.actionCopy, QtCore.SIGNAL(_fromUtf8("triggered(bool)")), self.copy)
@@ -314,6 +316,14 @@ class Ui_MainWindow(object):
         else:
 
             os.system("md " +'"' + str(new_path) + "\New folder" + '"' )
+
+    def openSearch(self):
+        MainWindow = QtGui.QMainWindow()
+        ui = Search()
+        ui.setupUi(MainWindow)
+        MainWindow.show()
+        Error      #put the error to stay in window :) :D :P
+
 
 from PyQt4 import QtWebKit
 from QTree import Main
