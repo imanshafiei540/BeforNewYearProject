@@ -1,3 +1,9 @@
+<<<<<<< HEAD
 E:/
 E:
 1
+=======
+/home/hooman/examples.desktop
+examples.desktop
+0
+>>>>>>> 2128cfce1d02bee00bea090e2c837dc3c2634089
