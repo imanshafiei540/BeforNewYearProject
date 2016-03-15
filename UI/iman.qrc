@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="Project">
+    <file>BeforNewYearProject/back_icon2.svg</file>
+    <file>BeforNewYearProject/paste.svg</file>
     <file>BeforNewYearProject/exit_icon.svg</file>
     <file>BeforNewYearProject/copy_icon.svg</file>
     <file>BeforNewYearProject/copy_icon2.svg</file>

@@ -5,14 +5,14 @@
 # Created by: PyQt4 UI code generator 4.11.4
 #
 # WARNING! All changes made in this file will be lost!
+
+from PyQt4 import QtCore, QtGui
 from PyQt4.QtGui import QApplication
 from PyQt4.QtCore import QUrl
 from PyQt4.QtWebKit import QWebView
 from PyQt4 import QtCore, QtGui
-import sys
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
-import  os
+import os
+
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
 except AttributeError:
@@ -27,7 +27,7 @@ except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
 
-class Ui_MainWindow(QWidget):
+class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
         MainWindow.resize(758, 501)
@@ -37,9 +37,11 @@ class Ui_MainWindow(QWidget):
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
         self.commandLinkButton = QtGui.QCommandLinkButton(self.centralwidget)
         self.commandLinkButton.setGeometry(QtCore.QRect(30, 10, 131, 48))
+        self.commandLinkButton.setStyleSheet(_fromUtf8("font: 16pt \"Agency FB\";"))
         self.commandLinkButton.setObjectName(_fromUtf8("commandLinkButton"))
         self.commandLinkButton_2 = QtGui.QCommandLinkButton(self.centralwidget)
         self.commandLinkButton_2.setGeometry(QtCore.QRect(590, 10, 131, 48))
+        self.commandLinkButton_2.setStyleSheet(_fromUtf8("font: 15pt \"Agency FB\";"))
         self.commandLinkButton_2.setObjectName(_fromUtf8("commandLinkButton_2"))
         self.verticalLayoutWidget = QtGui.QWidget(self.centralwidget)
         self.verticalLayoutWidget.setGeometry(QtCore.QRect(10, 70, 741, 281))
@@ -50,19 +52,16 @@ class Ui_MainWindow(QWidget):
         self.treeView.setObjectName(_fromUtf8("treeView"))
         self.verticalLayout_4.addWidget(self.treeView)
         self.verticalLayoutWidget_2 = QtGui.QWidget(self.centralwidget)
-        self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(250, 10, 261, 51))
+        self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(210, 10, 331, 51))
         self.verticalLayoutWidget_2.setObjectName(_fromUtf8("verticalLayoutWidget_2"))
         self.verticalLayout = QtGui.QVBoxLayout(self.verticalLayoutWidget_2)
         self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
-
         self.webView = QtWebKit.QWebView(self.verticalLayoutWidget_2)
         self.webView.setUrl(QtCore.QUrl(_fromUtf8("about:blank")))
         self.webView.setObjectName(_fromUtf8("webView"))
 
-
-        self.treeView.setContextMenuPolicy(Qt.CustomContextMenu)
-        self.treeView.customContextMenuRequested.connect(self.openMenu)
-
+        self.webView.load(QUrl('hello.html'))
+        #self.webView.load(QUrl('main.html'))
 
         self.verticalLayout.addWidget(self.webView)
         MainWindow.setCentralWidget(self.centralwidget)
@@ -72,7 +71,7 @@ class Ui_MainWindow(QWidget):
         self.toolBar = QtGui.QToolBar(MainWindow)
         self.toolBar.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.toolBar.setStyleSheet(_fromUtf8("color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));"))
-        self.toolBar.setIconSize(QtCore.QSize(90, 70))
+        self.toolBar.setIconSize(QtCore.QSize(65, 70))
         self.toolBar.setObjectName(_fromUtf8("toolBar"))
         MainWindow.addToolBar(QtCore.Qt.TopToolBarArea, self.toolBar)
         self.menuBar = QtGui.QMenuBar(MainWindow)
@@ -130,15 +129,34 @@ class Ui_MainWindow(QWidget):
         icon7.addPixmap(QtGui.QPixmap(_fromUtf8(":/Project/BeforNewYearProject/exit_icon.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.actionExit.setIcon(icon7)
         self.actionExit.setObjectName(_fromUtf8("actionExit"))
+        self.actionPaste = QtGui.QAction(MainWindow)
+        icon8 = QtGui.QIcon()
+        icon8.addPixmap(QtGui.QPixmap(_fromUtf8(":/Project/BeforNewYearProject/paste.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.actionPaste.setIcon(icon8)
+        self.actionPaste.setObjectName(_fromUtf8("actionPaste"))
+        self.actionDelete = QtGui.QAction(MainWindow)
+        icon9 = QtGui.QIcon()
+        icon9.addPixmap(QtGui.QPixmap(_fromUtf8(":/Project/BeforNewYearProject/delete.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.actionDelete.setIcon(icon9)
+        self.actionDelete.setObjectName(_fromUtf8("actionDelete"))
+        self.actionNewfolder = QtGui.QAction(MainWindow)
+        icon10 = QtGui.QIcon()
+        icon10.addPixmap(QtGui.QPixmap(_fromUtf8(":/Project/BeforNewYearProject/folder.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.actionNewfolder.setIcon(icon10)
+        self.actionNewfolder.setObjectName(_fromUtf8("actionNewfolder"))
         self.toolBar.addAction(self.actionHome)
         self.toolBar.addSeparator()
         self.toolBar.addAction(self.actionSettings_2)
         self.toolBar.addSeparator()
-        self.toolBar.addAction(self.actionSave)
+        self.toolBar.addAction(self.actionDelete)
+        self.toolBar.addSeparator()
+        self.toolBar.addAction(self.actionPaste)
         self.toolBar.addSeparator()
         self.toolBar.addAction(self.actionCut)
         self.toolBar.addSeparator()
         self.toolBar.addAction(self.actionCopy)
+        self.toolBar.addSeparator()
+        self.toolBar.addAction(self.actionNewfolder)
         self.toolBar.addSeparator()
         self.toolBar.addAction(self.actionSearch)
         self.toolBar.addSeparator()
@@ -155,9 +173,10 @@ class Ui_MainWindow(QWidget):
         QtCore.QObject.connect(self.commandLinkButton_2, QtCore.SIGNAL(_fromUtf8("clicked()")), self.toolBar.show)
         QtCore.QObject.connect(self.commandLinkButton, QtCore.SIGNAL(_fromUtf8("clicked()")), self.toolBar.hide)
         QtCore.QObject.connect(self.actionCopy, QtCore.SIGNAL(_fromUtf8("triggered(bool)")), self.copy)
-        QtCore.QObject.connect(self.actionSave, QtCore.SIGNAL(_fromUtf8("triggered(bool)")), self.paste)
+        QtCore.QObject.connect(self.actionPaste, QtCore.SIGNAL(_fromUtf8("triggered(bool)")), self.paste)
         QtCore.QObject.connect(self.actionCut, QtCore.SIGNAL(_fromUtf8("triggered(bool)")), self.cut)
-
+        QtCore.QObject.connect(self.actionDelete, QtCore.SIGNAL(_fromUtf8("triggered(bool)")), self.delete)
+        QtCore.QObject.connect(self.actionNewfolder, QtCore.SIGNAL(_fromUtf8("triggered(bool)")), self.newFolder)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -186,6 +205,10 @@ class Ui_MainWindow(QWidget):
         self.actionCopy.setToolTip(_translate("MainWindow", "Copy", None))
         self.actionExit.setText(_translate("MainWindow", "exit", None))
         self.actionExit.setToolTip(_translate("MainWindow", "Exit", None))
+        self.actionPaste.setText(_translate("MainWindow", "paste", None))
+        self.actionDelete.setText(_translate("MainWindow", "delete", None))
+        self.actionNewfolder.setText(_translate("MainWindow", "newfolder", None))
+
 
     def copyScript(self):
         self.webView.load(QUrl('copy.html'))
@@ -267,41 +290,30 @@ class Ui_MainWindow(QWidget):
     def delete(self):
         instance =  self.treeView
         PATH = instance.getFilePath()
-        if (os.path.isfile(str(PATH))):
-            os.system("DEL /F /Q /A" + str(PATH))
+        new_path = str(PATH).replace('/', "\\")
+        if (os.path.isfile(str(new_path))):
+
+            if ' ' in str(new_path):
+
+                os.system("DEL /F /Q /A " + '"' + str(new_path) + '"')
+
+            else:
+
+                os.system("DEL /F /Q /A " + str(new_path) )
 
         else:
-            os.system('RD /S /Q' + str(PATH))
+            os.system('RD /S /Q ' + '"' + str(PATH) + '"')
 
     def newFolder(self):
         instance = self.treeView
         PATH = instance.getFilePath()
-        if (os.path.isfile((str(PATH)))):
+        PATH = instance.getFilePath()
+        new_path = str(PATH).replace('/', "\\")
+        if (os.path.isfile((str(new_path)))):
             print "khodet khari"
         else:
-            os.system("md" +'"' + str(PATH) + "New Folder" + '"' )
 
-    def renameBox(self):
-        text, ok = QtGui.QInputDialog.getText(self, 'Input Dialog', 'Name')
-        if ok:
-            return text
-
-    def rename(self):
-        instance = self.treeView
-        PATH =  instance.getFilePath()
-        new_path = PATH.replace('/', '\\')
-        os.system("REN " + '"' + str (new_path) + '"' + self.renameBox)
-
-    def openMenu(self, position):
-
-        menu = QMenu()
-
-        menu.addAction(self.tr("cut"))
-        menu.addAction(self.tr("copy"))
-        menu.addAction(self.tr("paste"))
-        menu.addAction(self.tr("delete"))
-
-        menu.exec_(self.treeView.viewport().mapToGlobal(position))
+            os.system("md " +'"' + str(new_path) + "\New folder" + '"' )
 
 from PyQt4 import QtWebKit
 from QTree import Main
