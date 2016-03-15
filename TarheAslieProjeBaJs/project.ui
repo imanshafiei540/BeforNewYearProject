@@ -29,6 +29,9 @@
       <height>48</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">font: 16pt &quot;Agency FB&quot;;</string>
+    </property>
     <property name="text">
      <string>HideMenu</string>
     </property>
@@ -41,6 +44,9 @@
       <width>131</width>
       <height>48</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 15pt &quot;Agency FB&quot;;</string>
     </property>
     <property name="text">
      <string>ShowMenu</string>
@@ -64,9 +70,9 @@
    <widget class="QWidget" name="verticalLayoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>250</x>
+      <x>210</x>
       <y>10</y>
-      <width>261</width>
+      <width>331</width>
       <height>51</height>
      </rect>
     </property>
@@ -96,8 +102,8 @@
    </property>
    <property name="iconSize">
     <size>
-     <width>90</width>
-     <height>70</height>
+     <width>58</width>
+     <height>60</height>
     </size>
    </property>
    <attribute name="toolBarArea">
@@ -110,15 +116,24 @@
    <addaction name="separator"/>
    <addaction name="actionSettings_2"/>
    <addaction name="separator"/>
-   <addaction name="actionSave"/>
+   <addaction name="actionRename"/>
+   <addaction name="separator"/>
+   <addaction name="actionHistory"/>
+   <addaction name="separator"/>
+   <addaction name="actionDelete"/>
+   <addaction name="separator"/>
+   <addaction name="actionPaste"/>
    <addaction name="separator"/>
    <addaction name="actionCut"/>
    <addaction name="separator"/>
    <addaction name="actionCopy"/>
    <addaction name="separator"/>
+   <addaction name="actionNewfolder"/>
+   <addaction name="separator"/>
    <addaction name="actionSearch"/>
    <addaction name="separator"/>
    <addaction name="actionExit"/>
+   <addaction name="separator"/>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -259,6 +274,51 @@
     <string>Exit</string>
    </property>
   </action>
+  <action name="actionPaste">
+   <property name="icon">
+    <iconset resource="iman.qrc">
+     <normaloff>:/Project/BeforNewYearProject/paste.svg</normaloff>:/Project/BeforNewYearProject/paste.svg</iconset>
+   </property>
+   <property name="text">
+    <string>paste</string>
+   </property>
+  </action>
+  <action name="actionDelete">
+   <property name="icon">
+    <iconset resource="iman.qrc">
+     <normaloff>:/Project/BeforNewYearProject/delete.svg</normaloff>:/Project/BeforNewYearProject/delete.svg</iconset>
+   </property>
+   <property name="text">
+    <string>delete</string>
+   </property>
+  </action>
+  <action name="actionNewfolder">
+   <property name="icon">
+    <iconset resource="iman.qrc">
+     <normaloff>:/Project/BeforNewYearProject/folder.svg</normaloff>:/Project/BeforNewYearProject/folder.svg</iconset>
+   </property>
+   <property name="text">
+    <string>newfolder</string>
+   </property>
+  </action>
+  <action name="actionHistory">
+   <property name="icon">
+    <iconset resource="iman.qrc">
+     <normaloff>:/Project/BeforNewYearProject/history.svg</normaloff>:/Project/BeforNewYearProject/history.svg</iconset>
+   </property>
+   <property name="text">
+    <string>history</string>
+   </property>
+  </action>
+  <action name="actionRename">
+   <property name="icon">
+    <iconset resource="iman.qrc">
+     <normaloff>:/Project/BeforNewYearProject/rename.svg</normaloff>:/Project/BeforNewYearProject/rename.svg</iconset>
+   </property>
+   <property name="text">
+    <string>rename</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
@@ -269,7 +329,7 @@
   <customwidget>
    <class>Main</class>
    <extends>QTreeView</extends>
-   <header location="global">QTree</header>
+   <header>QTree</header>
   </customwidget>
  </customwidgets>
  <resources>

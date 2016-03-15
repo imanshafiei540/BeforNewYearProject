@@ -16,6 +16,7 @@ class Main(QtGui.QTreeView):
         self.treeview.setColumnWidth(0, 200)
         self.treeview.clicked.connect(self.get_file_path)
         self.treeview.doubleClicked.connect(self.test)
+        self.treeview.doubleClicked.connect(self.writeToHistory)
         self.filePath = None
 
 
@@ -40,6 +41,11 @@ class Main(QtGui.QTreeView):
         return self.filePath
     def getFileName(self):
         return self.fileName
+
+    def writeToHistory(self):
+        file = open('History.txt', 'a')
+        file.write(self.getFilePath() + '\n')
+        file.close()
 
 
 
