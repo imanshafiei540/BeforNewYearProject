@@ -9,6 +9,9 @@ from PyQt4.QtGui import QApplication
 from PyQt4.QtCore import QUrl
 from PyQt4.QtWebKit import QWebView
 from PyQt4 import QtCore, QtGui
+import sys
+from PyQt4.QtCore import *
+from PyQt4.QtGui import *
 import  os
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -24,7 +27,7 @@ except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
 
-class Ui_MainWindow(object):
+class Ui_MainWindow(QWidget):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
         MainWindow.resize(758, 501)
@@ -57,7 +60,8 @@ class Ui_MainWindow(object):
         self.webView.setObjectName(_fromUtf8("webView"))
 
 
-
+        self.treeView.setContextMenuPolicy(Qt.CustomContextMenu)
+        self.treeView.customContextMenuRequested.connect(self.openMenu)
 
 
         self.verticalLayout.addWidget(self.webView)
@@ -277,7 +281,16 @@ class Ui_MainWindow(object):
         else:
             os.system("md" +'"' + str(PATH) + "New Folder" + '"' )
 
+    def openMenu(self, position):
 
+        menu = QMenu()
+
+        menu.addAction(self.tr("cut"))
+        menu.addAction(self.tr("copy"))
+        menu.addAction(self.tr("paste"))
+        menu.addAction(self.tr("delete"))
+
+        menu.exec_(self.treeView.viewport().mapToGlobal(position))
 
 
 
