@@ -281,6 +281,17 @@ class Ui_MainWindow(QWidget):
         else:
             os.system("md" +'"' + str(PATH) + "New Folder" + '"' )
 
+    def renameBox(self):
+        text, ok = QtGui.QInputDialog.getText(self, 'Input Dialog', 'Name')
+        if ok:
+            return text
+
+    def rename(self):
+        instance = self.treeView
+        PATH =  instance.getFilePath()
+        new_path = PATH.replace('/', '\\')
+        os.system("REN " + '"' + str (new_path) + '"' + self.renameBox)
+
     def openMenu(self, position):
 
         menu = QMenu()
@@ -291,8 +302,6 @@ class Ui_MainWindow(QWidget):
         menu.addAction(self.tr("delete"))
 
         menu.exec_(self.treeView.viewport().mapToGlobal(position))
-
-
 
 from PyQt4 import QtWebKit
 from QTree import Main
