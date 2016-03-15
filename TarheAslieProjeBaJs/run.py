@@ -260,6 +260,23 @@ class Ui_MainWindow(object):
 
         self.pasteScript()
 
+    def delete(self):
+        instance =  self.treeView
+        PATH = instance.getFilePath()
+        if (os.path.isfile(str(PATH))):
+            os.system("DEL /F /Q /A" + str(PATH))
+
+        else:
+            os.system('RD /S /Q' + str(PATH))
+
+    def newFolder(self):
+        instance = self.treeView
+        PATH = instance.getFilePath()
+        if (os.path.isfile((str(PATH)))):
+            print "khodet khari"
+        else:
+            os.system("md" +'"' + str(PATH) + "New Folder" + '"' )
+
 
 
 
