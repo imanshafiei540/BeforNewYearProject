@@ -12,8 +12,8 @@ from PyQt4.QtCore import QUrl
 from PyQt4.QtWebKit import QWebView
 from PyQt4 import QtCore, QtGui
 from search import Search
-import os
-
+from Portal import Window
+import os, re
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -192,6 +192,7 @@ class Ui_MainWindow(object):
         QtCore.QObject.connect(self.actionPaste, QtCore.SIGNAL(_fromUtf8("triggered(bool)")), self.paste)
         QtCore.QObject.connect(self.actionCut, QtCore.SIGNAL(_fromUtf8("triggered(bool)")), self.cut)
         QtCore.QObject.connect(self.actionDelete, QtCore.SIGNAL(_fromUtf8("triggered(bool)")), self.delete)
+        QtCore.QObject.connect(self.actionRename, QtCore.SIGNAL(_fromUtf8("triggered(bool)")), self.rename)
         QtCore.QObject.connect(self.actionNewfolder, QtCore.SIGNAL(_fromUtf8("triggered(bool)")), self.newFolder)
         QtCore.QObject.connect(self.actionSearch, QtCore.SIGNAL(_fromUtf8("triggered()")), self.openSearch)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -328,7 +329,6 @@ class Ui_MainWindow(object):
     def newFolder(self):
         instance = self.treeView
         PATH = instance.getFilePath()
-        PATH = instance.getFilePath()
         new_path = str(PATH).replace('/', "\\")
         if (os.path.isfile((str(new_path)))):
             print "khodet khari"
@@ -342,6 +342,34 @@ class Ui_MainWindow(object):
         ui.setupUi(MainWindow)
         MainWindow.show()
         Error      #put the error to stay in window :) :D :P
+
+    def rename(self):
+        r_ins = Window()
+        r_ins.main()
+        new_name = r_ins.text
+
+        instance = self.treeView
+        PATH = instance.getFilePath()
+        new_path = str(PATH).replace('/', "\\")
+        if (os.path.isfile((str(new_path)))):
+            print "REN" + '"' + str(new_path) + '"' + ' "' + str(new_name) + '"'
+            extension = ""
+            for i in range(len(new_path)-1,0,-1):
+                if new_path[i] == '.':
+                    break
+                else:
+                    extension += new_path[i]
+            new_ext = "."
+            for j in range(len(extension)):
+                new_ext += extension[len(extension)-j-1]
+            print new_ext
+
+            os.system("REN " + '"' + str(new_path) + '"' + ' "' + str(new_name) + new_ext + '"' )
+
+
+        else:
+
+            os.system("md " +'"' + str(new_path) + "\New folder" + '"' )
 
 
 from PyQt4 import QtWebKit
