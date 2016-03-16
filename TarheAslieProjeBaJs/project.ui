@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>758</width>
-    <height>501</height>
+    <width>762</width>
+    <height>499</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -56,7 +56,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>70</y>
+      <y>80</y>
       <width>741</width>
       <height>281</height>
      </rect>
@@ -102,8 +102,8 @@
    </property>
    <property name="iconSize">
     <size>
-     <width>58</width>
-     <height>60</height>
+     <width>51</width>
+     <height>55</height>
     </size>
    </property>
    <attribute name="toolBarArea">
@@ -140,7 +140,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>758</width>
+     <width>762</width>
      <height>26</height>
     </rect>
    </property>
@@ -177,8 +177,8 @@
   </widget>
   <action name="actionSettings">
    <property name="icon">
-    <iconset>
-     <normaloff>:/iman/Downloads/settings1.ico</normaloff>:/iman/Downloads/settings1.ico</iconset>
+    <iconset resource="iman.qrc">
+     <normaloff>:/Project/settings_icon.svg</normaloff>:/Project/settings_icon.svg</iconset>
    </property>
    <property name="text">
     <string>settings</string>
@@ -190,7 +190,7 @@
   <action name="actionSettings_2">
    <property name="icon">
     <iconset resource="iman.qrc">
-     <normaloff>:/Project/BeforNewYearProject/settings_icon.svg</normaloff>:/Project/BeforNewYearProject/settings_icon.svg</iconset>
+     <normaloff>:/Project/settings_icon.svg</normaloff>:/Project/settings_icon.svg</iconset>
    </property>
    <property name="text">
     <string>settings</string>
@@ -202,7 +202,7 @@
   <action name="actionSearch">
    <property name="icon">
     <iconset resource="iman.qrc">
-     <normaloff>:/Project/BeforNewYearProject/search_icon3.svg</normaloff>:/Project/BeforNewYearProject/search_icon3.svg</iconset>
+     <normaloff>:/Project/search_icon3.svg</normaloff>:/Project/search_icon3.svg</iconset>
    </property>
    <property name="text">
     <string>search</string>
@@ -214,7 +214,7 @@
   <action name="actionHome">
    <property name="icon">
     <iconset resource="iman.qrc">
-     <normaloff>:/Project/BeforNewYearProject/home_icon.svg</normaloff>:/Project/BeforNewYearProject/home_icon.svg</iconset>
+     <normaloff>:/Project/home_icon.svg</normaloff>:/Project/home_icon.svg</iconset>
    </property>
    <property name="text">
     <string>home</string>
@@ -226,7 +226,7 @@
   <action name="actionSave">
    <property name="icon">
     <iconset resource="iman.qrc">
-     <normaloff>:/Project/BeforNewYearProject/save_icon.svg</normaloff>:/Project/BeforNewYearProject/save_icon.svg</iconset>
+     <normaloff>:/Project/save_icon.svg</normaloff>:/Project/save_icon.svg</iconset>
    </property>
    <property name="text">
     <string>save</string>
@@ -238,7 +238,7 @@
   <action name="actionCut">
    <property name="icon">
     <iconset resource="iman.qrc">
-     <normaloff>:/Project/BeforNewYearProject/cut_icon.svg</normaloff>:/Project/BeforNewYearProject/cut_icon.svg</iconset>
+     <normaloff>:/Project/cut_icon.svg</normaloff>:/Project/cut_icon.svg</iconset>
    </property>
    <property name="text">
     <string>cut</string>
@@ -253,7 +253,7 @@
    </property>
    <property name="icon">
     <iconset resource="iman.qrc">
-     <normaloff>:/Project/BeforNewYearProject/copy_icon2.svg</normaloff>:/Project/BeforNewYearProject/copy_icon2.svg</iconset>
+     <normaloff>:/Project/copy_icon2.svg</normaloff>:/Project/copy_icon2.svg</iconset>
    </property>
    <property name="text">
     <string>copy</string>
@@ -265,7 +265,7 @@
   <action name="actionExit">
    <property name="icon">
     <iconset resource="iman.qrc">
-     <normaloff>:/Project/BeforNewYearProject/exit_icon.svg</normaloff>:/Project/BeforNewYearProject/exit_icon.svg</iconset>
+     <normaloff>:/Project/exit_icon.svg</normaloff>:/Project/exit_icon.svg</iconset>
    </property>
    <property name="text">
     <string>exit</string>
@@ -277,7 +277,7 @@
   <action name="actionPaste">
    <property name="icon">
     <iconset resource="iman.qrc">
-     <normaloff>:/Project/BeforNewYearProject/paste.svg</normaloff>:/Project/BeforNewYearProject/paste.svg</iconset>
+     <normaloff>:/Project/paste.svg</normaloff>:/Project/paste.svg</iconset>
    </property>
    <property name="text">
     <string>paste</string>
@@ -286,7 +286,7 @@
   <action name="actionDelete">
    <property name="icon">
     <iconset resource="iman.qrc">
-     <normaloff>:/Project/BeforNewYearProject/delete.svg</normaloff>:/Project/BeforNewYearProject/delete.svg</iconset>
+     <normaloff>:/Project/delete.svg</normaloff>:/Project/delete.svg</iconset>
    </property>
    <property name="text">
     <string>delete</string>
@@ -295,7 +295,7 @@
   <action name="actionNewfolder">
    <property name="icon">
     <iconset resource="iman.qrc">
-     <normaloff>:/Project/BeforNewYearProject/folder.svg</normaloff>:/Project/BeforNewYearProject/folder.svg</iconset>
+     <normaloff>:/Project/folder.svg</normaloff>:/Project/folder.svg</iconset>
    </property>
    <property name="text">
     <string>newfolder</string>
@@ -304,7 +304,7 @@
   <action name="actionHistory">
    <property name="icon">
     <iconset resource="iman.qrc">
-     <normaloff>:/Project/BeforNewYearProject/history.svg</normaloff>:/Project/BeforNewYearProject/history.svg</iconset>
+     <normaloff>:/Project/history.svg</normaloff>:/Project/history.svg</iconset>
    </property>
    <property name="text">
     <string>history</string>
@@ -313,7 +313,7 @@
   <action name="actionRename">
    <property name="icon">
     <iconset resource="iman.qrc">
-     <normaloff>:/Project/BeforNewYearProject/rename.svg</normaloff>:/Project/BeforNewYearProject/rename.svg</iconset>
+     <normaloff>:/Project/rename.svg</normaloff>:/Project/rename.svg</iconset>
    </property>
    <property name="text">
     <string>rename</string>
