@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>640</width>
+    <width>632</width>
     <height>480</height>
    </rect>
   </property>
@@ -14,25 +14,6 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="verticalLayoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>340</y>
-      <width>611</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
-      <widget class="QPushButton" name="pushButton">
-       <property name="text">
-        <string>Open the file</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
    <widget class="QLineEdit" name="lineEdit_2">
     <property name="geometry">
      <rect>
@@ -118,6 +99,19 @@
      <string/>
     </property>
    </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>340</y>
+      <width>611</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>open the file</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QToolBar" name="toolBar">
@@ -148,7 +142,7 @@
   <action name="actionHome">
    <property name="icon">
     <iconset resource="iman.qrc">
-     <normaloff>:/Project/BeforNewYearProject/home_icon.svg</normaloff>:/Project/BeforNewYearProject/home_icon.svg</iconset>
+     <normaloff>:/Project/home_icon.svg</normaloff>:/Project/home_icon.svg</iconset>
    </property>
    <property name="text">
     <string>Home</string>
@@ -157,7 +151,7 @@
   <action name="actionExit">
    <property name="icon">
     <iconset resource="iman.qrc">
-     <normaloff>:/Project/BeforNewYearProject/exit_icon.svg</normaloff>:/Project/BeforNewYearProject/exit_icon.svg</iconset>
+     <normaloff>:/Project/exit_icon.svg</normaloff>:/Project/exit_icon.svg</iconset>
    </property>
    <property name="text">
     <string>Exit</string>
@@ -166,7 +160,7 @@
   <action name="actionSetting">
    <property name="icon">
     <iconset resource="iman.qrc">
-     <normaloff>:/Project/BeforNewYearProject/settings_icon.svg</normaloff>:/Project/BeforNewYearProject/settings_icon.svg</iconset>
+     <normaloff>:/Project/settings_icon.svg</normaloff>:/Project/settings_icon.svg</iconset>
    </property>
    <property name="text">
     <string>setting</string>
