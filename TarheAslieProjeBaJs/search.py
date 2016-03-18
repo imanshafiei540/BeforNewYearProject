@@ -26,6 +26,7 @@ class Search(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
         MainWindow.resize(632, 480)
+        MainWindow.setFixedSize(632,480)
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
         self.searchbox = QtGui.QLineEdit(self.centralwidget)
@@ -105,6 +106,8 @@ class Search(object):
 
     def searcher(self):
         keyword=str(self.searchbox.text())
+        if keyword=="":
+            keyword="àz"
         import os
         import re
         print keyword

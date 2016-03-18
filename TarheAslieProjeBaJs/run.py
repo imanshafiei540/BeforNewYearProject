@@ -32,6 +32,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
         MainWindow.resize(758, 501)
+        MainWindow.setFixedSize(762,499)
         MainWindow.setLayoutDirection(QtCore.Qt.LeftToRight)
         MainWindow.setStyleSheet(_fromUtf8("background-color: rgb(208, 208, 208);"))
         self.centralwidget = QtGui.QWidget(MainWindow)

@@ -34,6 +34,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
         MainWindow.resize(762, 499)
+        MainWindow.setFixedSize(762,499)
         MainWindow.setLayoutDirection(QtCore.Qt.LeftToRight)
         MainWindow.setStyleSheet(_fromUtf8("background-color: rgb(208, 208, 208);"))
         self.centralwidget = QtGui.QWidget(MainWindow)
@@ -121,7 +122,6 @@ class Ui_MainWindow(object):
         self.actionCut.setIcon(icon4)
         self.actionCut.setObjectName(_fromUtf8("actionCut"))
         self.actionCopy = QtGui.QAction(MainWindow)
-        self.actionCopy.setCheckable(True)
         icon5 = QtGui.QIcon()
         icon5.addPixmap(QtGui.QPixmap(_fromUtf8(":/Project/copy_icon2.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.actionCopy.setIcon(icon5)
