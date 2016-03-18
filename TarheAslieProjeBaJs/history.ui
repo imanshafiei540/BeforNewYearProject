@@ -17,40 +17,44 @@
    <widget class="QWidget" name="horizontalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>150</y>
-      <width>621</width>
+      <x>20</x>
+      <y>140</y>
+      <width>601</width>
       <height>211</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QTreeView" name="treeView"/>
+      <widget class="Main" name="treeView"/>
      </item>
     </layout>
    </widget>
    <widget class="QWidget" name="horizontalLayoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>50</y>
+      <x>20</x>
+      <y>70</y>
       <width>451</width>
-      <height>89</height>
+      <height>31</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
-      <widget class="QPlainTextEdit" name="plainTextEdit"/>
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>TextLabel</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>540</x>
-      <y>50</y>
+      <x>530</x>
+      <y>70</y>
       <width>93</width>
-      <height>91</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
@@ -60,8 +64,8 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>20</y>
+      <x>20</x>
+      <y>40</y>
       <width>301</width>
       <height>16</height>
      </rect>
@@ -81,7 +85,7 @@
    </property>
    <property name="iconSize">
     <size>
-     <width>65</width>
+     <width>80</width>
      <height>60</height>
     </size>
    </property>
@@ -98,7 +102,7 @@
   <action name="actionHome">
    <property name="icon">
     <iconset resource="iman.qrc">
-     <normaloff>:/Project/BeforNewYearProject/home_icon.svg</normaloff>:/Project/BeforNewYearProject/home_icon.svg</iconset>
+     <normaloff>:/Project/home_icon.svg</normaloff>:/Project/home_icon.svg</iconset>
    </property>
    <property name="text">
     <string>Home</string>
@@ -107,7 +111,7 @@
   <action name="actionSettings">
    <property name="icon">
     <iconset resource="iman.qrc">
-     <normaloff>:/Project/BeforNewYearProject/settings_icon.svg</normaloff>:/Project/BeforNewYearProject/settings_icon.svg</iconset>
+     <normaloff>:/Project/settings_icon.svg</normaloff>:/Project/settings_icon.svg</iconset>
    </property>
    <property name="text">
     <string>settings</string>
@@ -116,13 +120,20 @@
   <action name="actionExit">
    <property name="icon">
     <iconset resource="iman.qrc">
-     <normaloff>:/Project/BeforNewYearProject/exit_icon.svg</normaloff>:/Project/BeforNewYearProject/exit_icon.svg</iconset>
+     <normaloff>:/Project/exit_icon.svg</normaloff>:/Project/exit_icon.svg</iconset>
    </property>
    <property name="text">
     <string>exit</string>
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>Main</class>
+   <extends>QTreeView</extends>
+   <header location="global">QTree</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="iman.qrc"/>
  </resources>
