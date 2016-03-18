@@ -7,6 +7,11 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt4 import QtCore, QtGui
+from PyQt4.QtGui import QApplication
+from PyQt4.QtCore import QUrl
+from PyQt4.QtWebKit import QWebView
+from PyQt4 import QtWebKit
+
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -22,8 +27,9 @@ except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
 
-class Ui_MainWindow(object):
+class history_window(object):
     def setupUi(self, MainWindow):
+        self.history_flag = 0
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
         MainWindow.resize(640, 480)
         self.centralwidget = QtGui.QWidget(MainWindow)
@@ -33,7 +39,7 @@ class Ui_MainWindow(object):
         self.horizontalLayoutWidget.setObjectName(_fromUtf8("horizontalLayoutWidget"))
         self.horizontalLayout = QtGui.QHBoxLayout(self.horizontalLayoutWidget)
         self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
-        self.treeView = Main(self.horizontalLayoutWidget)
+        self.treeView = Myview(self.horizontalLayoutWidget)
         self.treeView.setObjectName(_fromUtf8("treeView"))
         self.horizontalLayout.addWidget(self.treeView)
         self.horizontalLayoutWidget_2 = QtGui.QWidget(self.centralwidget)
@@ -41,6 +47,9 @@ class Ui_MainWindow(object):
         self.horizontalLayoutWidget_2.setObjectName(_fromUtf8("horizontalLayoutWidget_2"))
         self.horizontalLayout_2 = QtGui.QHBoxLayout(self.horizontalLayoutWidget_2)
         self.horizontalLayout_2.setObjectName(_fromUtf8("horizontalLayout_2"))
+        self.webView = QtWebKit.QWebView()
+        self.webView.setUrl(QtCore.QUrl(_fromUtf8("about:blank")))
+        self.webView.setObjectName(_fromUtf8("webView"))
         self.label_2 = QtGui.QLabel(self.horizontalLayoutWidget_2)
         self.label_2.setObjectName(_fromUtf8("label_2"))
         self.horizontalLayout_2.addWidget(self.label_2)
@@ -79,11 +88,13 @@ class Ui_MainWindow(object):
         self.toolBar.addAction(self.actionExit)
 
         self.retranslateUi(MainWindow)
+        QtCore.QObject.connect(self.actionExit, QtCore.SIGNAL(_fromUtf8("triggered()")), MainWindow.close)
+        QtCore.QObject.connect(self.pushButton, QtCore.SIGNAL(_fromUtf8("clicked(bool)")), self.do_history)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow", None))
-        self.label_2.setText(_translate("MainWindow", "TextLabel", None))
+        self.label_2.setText(_translate("MainWindow", "waiting...", None))
         self.pushButton.setText(_translate("MainWindow", "Search Next", None))
         self.label.setText(_translate("MainWindow", "Here its your movements in fie manager: ", None))
         self.toolBar.setWindowTitle(_translate("MainWindow", "toolBar", None))
@@ -91,15 +102,39 @@ class Ui_MainWindow(object):
         self.actionSettings.setText(_translate("MainWindow", "settings", None))
         self.actionExit.setText(_translate("MainWindow", "exit", None))
 
-from QTree import Main
+
+    def do_history(self):
+        file = open('History.txt', 'r')
+        list_history = file.readlines()
+        lenght_of_history =len(list_history)
+
+        try:
+
+            self.history_flag += 1
+            name = str(list_history[lenght_of_history - self.history_flag -1].replace("\n",""))
+            self.label_2.setText(name)
+            print name
+            self.treeView.view.setRootIndex(self.treeView.model.index(name))
+        except:
+
+            self.webView.load(QUrl('historyAlert.html'))
+
+
+
+
+
+
+
+
+from HistoryTree import Myview
 import iman_rc
 
-if __name__ == "__main__":
+'''if __name__ == "__main__":
     import sys
     app = QtGui.QApplication(sys.argv)
     MainWindow = QtGui.QMainWindow()
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
     MainWindow.show()
-    sys.exit(app.exec_())
+    sys.exit(app.exec_())'''
 

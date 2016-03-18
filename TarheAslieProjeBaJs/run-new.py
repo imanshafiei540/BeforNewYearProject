@@ -13,6 +13,7 @@ from PyQt4.QtWebKit import QWebView
 from PyQt4 import QtCore, QtGui
 from search import Search
 from Portal import Window
+from history import history_window
 import os, re
 
 try:
@@ -195,6 +196,7 @@ class Ui_MainWindow(object):
         QtCore.QObject.connect(self.actionRename, QtCore.SIGNAL(_fromUtf8("triggered(bool)")), self.rename)
         QtCore.QObject.connect(self.actionNewfolder, QtCore.SIGNAL(_fromUtf8("triggered(bool)")), self.newFolder)
         QtCore.QObject.connect(self.actionSearch, QtCore.SIGNAL(_fromUtf8("triggered()")), self.openSearch)
+        QtCore.QObject.connect(self.actionHistory, QtCore.SIGNAL(_fromUtf8("triggered()")), self.openHistory)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -339,6 +341,14 @@ class Ui_MainWindow(object):
     def openSearch(self):
         MainWindow = QtGui.QMainWindow()
         ui = Search()
+        ui.setupUi(MainWindow)
+        MainWindow.show()
+        Error      #put the error to stay in window :) :D :P
+
+
+    def openHistory(self):
+        MainWindow = QtGui.QMainWindow()
+        ui = history_window()
         ui.setupUi(MainWindow)
         MainWindow.show()
         Error      #put the error to stay in window :) :D :P
