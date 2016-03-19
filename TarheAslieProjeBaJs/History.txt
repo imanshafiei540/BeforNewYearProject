@@ -38,3 +38,7 @@ D:/
 D:/flaskr
 D:/flaskr
 D:/
+C:/
+C:/Users
+C:/Users/Administrator
+C:/Users/Administrator/Desktop
