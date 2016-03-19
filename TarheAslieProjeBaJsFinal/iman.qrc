@@ -1,0 +1,24 @@
+<RCC>
+  <qresource prefix="Project">
+    <file>black-thread.png</file>
+    <file>back_icon2.svg</file>
+    <file>copy_icon.svg</file>
+    <file>copy_icon2.svg</file>
+    <file>copy_icon3.svg</file>
+    <file>cut_icon.svg</file>
+    <file>delete.svg</file>
+    <file>exit_icon.svg</file>
+    <file>folder.svg</file>
+    <file>forward_icon.svg</file>
+    <file>history.svg</file>
+    <file>home_icon.svg</file>
+    <file>paste.svg</file>
+    <file>rename.svg</file>
+    <file>save_icon.svg</file>
+    <file>search_icon.svg</file>
+    <file>search_icon2.svg</file>
+    <file>search_icon3.svg</file>
+    <file>search_icon4.svg</file>
+    <file>settings_icon.svg</file>
+  </qresource>
+</RCC>
