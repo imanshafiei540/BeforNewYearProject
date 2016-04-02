@@ -12,9 +12,7 @@ from PyQt4.QtCore import QUrl
 from PyQt4.QtWebKit import QWebView
 from PyQt4 import QtCore, QtGui
 from search import Search
-from Portal import Window
-from history import history_window
-import os, re
+import os
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -33,7 +31,7 @@ except AttributeError:
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
-        MainWindow.resize(762, 499)
+        MainWindow.resize(758, 501)
         MainWindow.setFixedSize(762,499)
         MainWindow.setLayoutDirection(QtCore.Qt.LeftToRight)
         MainWindow.setStyleSheet(_fromUtf8("background-color: rgb(208, 208, 208);"))
@@ -48,7 +46,7 @@ class Ui_MainWindow(object):
         self.commandLinkButton_2.setStyleSheet(_fromUtf8("font: 15pt \"Agency FB\";"))
         self.commandLinkButton_2.setObjectName(_fromUtf8("commandLinkButton_2"))
         self.verticalLayoutWidget = QtGui.QWidget(self.centralwidget)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(10, 80, 741, 281))
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(10, 70, 741, 281))
         self.verticalLayoutWidget.setObjectName(_fromUtf8("verticalLayoutWidget"))
         self.verticalLayout_4 = QtGui.QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout_4.setObjectName(_fromUtf8("verticalLayout_4"))
@@ -63,11 +61,11 @@ class Ui_MainWindow(object):
         self.webView = QtWebKit.QWebView(self.verticalLayoutWidget_2)
         self.webView.setUrl(QtCore.QUrl(_fromUtf8("about:blank")))
         self.webView.setObjectName(_fromUtf8("webView"))
-        self.webView.setGeometry(100,100,100,100)
-        self.verticalLayout.addWidget(self.webView)
 
         self.webView.load(QUrl('hello.html'))
+        #self.webView.load(QUrl('main.html'))
 
+        self.verticalLayout.addWidget(self.webView)
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtGui.QStatusBar(MainWindow)
         self.statusbar.setObjectName(_fromUtf8("statusbar"))
@@ -75,11 +73,11 @@ class Ui_MainWindow(object):
         self.toolBar = QtGui.QToolBar(MainWindow)
         self.toolBar.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.toolBar.setStyleSheet(_fromUtf8("color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));"))
-        self.toolBar.setIconSize(QtCore.QSize(51, 55))
+        self.toolBar.setIconSize(QtCore.QSize(65, 70))
         self.toolBar.setObjectName(_fromUtf8("toolBar"))
         MainWindow.addToolBar(QtCore.Qt.TopToolBarArea, self.toolBar)
         self.menuBar = QtGui.QMenuBar(MainWindow)
-        self.menuBar.setGeometry(QtCore.QRect(0, 0, 762, 26))
+        self.menuBar.setGeometry(QtCore.QRect(0, 0, 758, 26))
         self.menuBar.setObjectName(_fromUtf8("menuBar"))
         self.menuFile = QtGui.QMenu(self.menuBar)
         self.menuFile.setObjectName(_fromUtf8("menuFile"))
@@ -94,74 +92,63 @@ class Ui_MainWindow(object):
         MainWindow.setMenuBar(self.menuBar)
         self.actionSettings = QtGui.QAction(MainWindow)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(_fromUtf8(":/Project/settings_icon.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(_fromUtf8(":/iman/Downloads/settings1.ico")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.actionSettings.setIcon(icon)
         self.actionSettings.setObjectName(_fromUtf8("actionSettings"))
         self.actionSettings_2 = QtGui.QAction(MainWindow)
-        self.actionSettings_2.setIcon(icon)
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(QtGui.QPixmap(_fromUtf8(":/Project/BeforNewYearProject/settings_icon.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.actionSettings_2.setIcon(icon1)
         self.actionSettings_2.setObjectName(_fromUtf8("actionSettings_2"))
         self.actionSearch = QtGui.QAction(MainWindow)
-        icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap(_fromUtf8(":/Project/search_icon3.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.actionSearch.setIcon(icon1)
+        icon2 = QtGui.QIcon()
+        icon2.addPixmap(QtGui.QPixmap(_fromUtf8(":/Project/BeforNewYearProject/search_icon3.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.actionSearch.setIcon(icon2)
         self.actionSearch.setObjectName(_fromUtf8("actionSearch"))
         self.actionHome = QtGui.QAction(MainWindow)
-        icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap(_fromUtf8(":/Project/home_icon.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.actionHome.setIcon(icon2)
+        icon3 = QtGui.QIcon()
+        icon3.addPixmap(QtGui.QPixmap(_fromUtf8(":/Project/BeforNewYearProject/home_icon.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.actionHome.setIcon(icon3)
         self.actionHome.setObjectName(_fromUtf8("actionHome"))
         self.actionSave = QtGui.QAction(MainWindow)
-        icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap(_fromUtf8(":/Project/save_icon.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.actionSave.setIcon(icon3)
+        icon4 = QtGui.QIcon()
+        icon4.addPixmap(QtGui.QPixmap(_fromUtf8(":/Project/BeforNewYearProject/save_icon.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.actionSave.setIcon(icon4)
         self.actionSave.setObjectName(_fromUtf8("actionSave"))
         self.actionCut = QtGui.QAction(MainWindow)
-        icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap(_fromUtf8(":/Project/cut_icon.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.actionCut.setIcon(icon4)
+        icon5 = QtGui.QIcon()
+        icon5.addPixmap(QtGui.QPixmap(_fromUtf8(":/Project/BeforNewYearProject/cut_icon.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.actionCut.setIcon(icon5)
         self.actionCut.setObjectName(_fromUtf8("actionCut"))
         self.actionCopy = QtGui.QAction(MainWindow)
-        icon5 = QtGui.QIcon()
-        icon5.addPixmap(QtGui.QPixmap(_fromUtf8(":/Project/copy_icon2.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.actionCopy.setIcon(icon5)
+        self.actionCopy.setCheckable(True)
+        icon6 = QtGui.QIcon()
+        icon6.addPixmap(QtGui.QPixmap(_fromUtf8(":/Project/BeforNewYearProject/copy_icon2.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.actionCopy.setIcon(icon6)
         self.actionCopy.setObjectName(_fromUtf8("actionCopy"))
         self.actionExit = QtGui.QAction(MainWindow)
-        icon6 = QtGui.QIcon()
-        icon6.addPixmap(QtGui.QPixmap(_fromUtf8(":/Project/exit_icon.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.actionExit.setIcon(icon6)
+        icon7 = QtGui.QIcon()
+        icon7.addPixmap(QtGui.QPixmap(_fromUtf8(":/Project/BeforNewYearProject/exit_icon.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.actionExit.setIcon(icon7)
         self.actionExit.setObjectName(_fromUtf8("actionExit"))
         self.actionPaste = QtGui.QAction(MainWindow)
-        icon7 = QtGui.QIcon()
-        icon7.addPixmap(QtGui.QPixmap(_fromUtf8(":/Project/paste.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.actionPaste.setIcon(icon7)
+        icon8 = QtGui.QIcon()
+        icon8.addPixmap(QtGui.QPixmap(_fromUtf8(":/Project/BeforNewYearProject/paste.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.actionPaste.setIcon(icon8)
         self.actionPaste.setObjectName(_fromUtf8("actionPaste"))
         self.actionDelete = QtGui.QAction(MainWindow)
-        icon8 = QtGui.QIcon()
-        icon8.addPixmap(QtGui.QPixmap(_fromUtf8(":/Project/delete.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.actionDelete.setIcon(icon8)
+        icon9 = QtGui.QIcon()
+        icon9.addPixmap(QtGui.QPixmap(_fromUtf8(":/Project/BeforNewYearProject/delete.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.actionDelete.setIcon(icon9)
         self.actionDelete.setObjectName(_fromUtf8("actionDelete"))
         self.actionNewfolder = QtGui.QAction(MainWindow)
-        icon9 = QtGui.QIcon()
-        icon9.addPixmap(QtGui.QPixmap(_fromUtf8(":/Project/folder.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.actionNewfolder.setIcon(icon9)
-        self.actionNewfolder.setObjectName(_fromUtf8("actionNewfolder"))
-        self.actionHistory = QtGui.QAction(MainWindow)
         icon10 = QtGui.QIcon()
-        icon10.addPixmap(QtGui.QPixmap(_fromUtf8(":/Project/history.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.actionHistory.setIcon(icon10)
-        self.actionHistory.setObjectName(_fromUtf8("actionHistory"))
-        self.actionRename = QtGui.QAction(MainWindow)
-        icon11 = QtGui.QIcon()
-        icon11.addPixmap(QtGui.QPixmap(_fromUtf8(":/Project/rename.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.actionRename.setIcon(icon11)
-        self.actionRename.setObjectName(_fromUtf8("actionRename"))
+        icon10.addPixmap(QtGui.QPixmap(_fromUtf8(":/Project/BeforNewYearProject/folder.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.actionNewfolder.setIcon(icon10)
+        self.actionNewfolder.setObjectName(_fromUtf8("actionNewfolder"))
         self.toolBar.addAction(self.actionHome)
         self.toolBar.addSeparator()
         self.toolBar.addAction(self.actionSettings_2)
-        self.toolBar.addSeparator()
-        self.toolBar.addAction(self.actionRename)
-        self.toolBar.addSeparator()
-        self.toolBar.addAction(self.actionHistory)
         self.toolBar.addSeparator()
         self.toolBar.addAction(self.actionDelete)
         self.toolBar.addSeparator()
@@ -176,7 +163,6 @@ class Ui_MainWindow(object):
         self.toolBar.addAction(self.actionSearch)
         self.toolBar.addSeparator()
         self.toolBar.addAction(self.actionExit)
-        self.toolBar.addSeparator()
         self.menuBar.addAction(self.menuFile.menuAction())
         self.menuBar.addAction(self.menuEdit.menuAction())
         self.menuBar.addAction(self.menuView.menuAction())
@@ -186,16 +172,14 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         QtCore.QObject.connect(self.actionExit, QtCore.SIGNAL(_fromUtf8("triggered()")), MainWindow.close)
         QtCore.QObject.connect(self.actionSettings_2, QtCore.SIGNAL(_fromUtf8("triggered()")), self.toolBar.hide)
+        QtCore.QObject.connect(self.actionSearch, QtCore.SIGNAL(_fromUtf8("triggered()")), self.openSearch)
         QtCore.QObject.connect(self.commandLinkButton_2, QtCore.SIGNAL(_fromUtf8("clicked()")), self.toolBar.show)
         QtCore.QObject.connect(self.commandLinkButton, QtCore.SIGNAL(_fromUtf8("clicked()")), self.toolBar.hide)
         QtCore.QObject.connect(self.actionCopy, QtCore.SIGNAL(_fromUtf8("triggered(bool)")), self.copy)
         QtCore.QObject.connect(self.actionPaste, QtCore.SIGNAL(_fromUtf8("triggered(bool)")), self.paste)
         QtCore.QObject.connect(self.actionCut, QtCore.SIGNAL(_fromUtf8("triggered(bool)")), self.cut)
         QtCore.QObject.connect(self.actionDelete, QtCore.SIGNAL(_fromUtf8("triggered(bool)")), self.delete)
-        QtCore.QObject.connect(self.actionRename, QtCore.SIGNAL(_fromUtf8("triggered(bool)")), self.rename)
         QtCore.QObject.connect(self.actionNewfolder, QtCore.SIGNAL(_fromUtf8("triggered(bool)")), self.newFolder)
-        QtCore.QObject.connect(self.actionSearch, QtCore.SIGNAL(_fromUtf8("triggered()")), self.openSearch)
-        QtCore.QObject.connect(self.actionHistory, QtCore.SIGNAL(_fromUtf8("triggered()")), self.openHistory)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -227,10 +211,6 @@ class Ui_MainWindow(object):
         self.actionPaste.setText(_translate("MainWindow", "paste", None))
         self.actionDelete.setText(_translate("MainWindow", "delete", None))
         self.actionNewfolder.setText(_translate("MainWindow", "newfolder", None))
-        self.actionHistory.setText(_translate("MainWindow", "history", None))
-        self.actionRename.setText(_translate("MainWindow", "rename", None))
-
-
 
 
     def copyScript(self):
@@ -330,6 +310,7 @@ class Ui_MainWindow(object):
     def newFolder(self):
         instance = self.treeView
         PATH = instance.getFilePath()
+        PATH = instance.getFilePath()
         new_path = str(PATH).replace('/', "\\")
         if (os.path.isfile((str(new_path)))):
             print "khodet khari"
@@ -345,40 +326,6 @@ class Ui_MainWindow(object):
         Error      #put the error to stay in window :) :D :P
 
 
-    def openHistory(self):
-        MainWindow = QtGui.QMainWindow()
-        ui = history_window()
-        ui.setupUi(MainWindow)
-        MainWindow.show()
-        Error      #put the error to stay in window :) :D :P
-
-    def rename(self):
-        r_ins = Window()
-        r_ins.main()
-        new_name = r_ins.text
-
-        instance = self.treeView
-        PATH = instance.getFilePath()
-        new_path = str(PATH).replace('/', "\\")
-        if (os.path.isfile((str(new_path)))):
-            print "REN" + '"' + str(new_path) + '"' + ' "' + str(new_name) + '"'
-            extension = ""
-            for i in range(len(new_path)-1,0,-1):
-                if new_path[i] == '.':
-                    break
-                else:
-                    extension += new_path[i]
-            new_ext = "."
-            for j in range(len(extension)):
-                new_ext += extension[len(extension)-j-1]
-            print new_ext
-
-            os.system("REN " + '"' + str(new_path) + '"' + ' "' + str(new_name) + new_ext + '"' )
-
-
-        else:
-
-            os.system("REN " + '"' + str(new_path) + '"' + ' "' + str(new_name)  + '"' )
 
 
 from PyQt4 import QtWebKit

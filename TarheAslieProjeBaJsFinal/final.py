@@ -33,10 +33,10 @@ except AttributeError:
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
-        MainWindow.resize(762, 499)
-        MainWindow.setFixedSize(762,499)
+        MainWindow.resize(762, 563)
         MainWindow.setLayoutDirection(QtCore.Qt.LeftToRight)
         MainWindow.setStyleSheet(_fromUtf8("background-color: rgb(208, 208, 208);"))
+        MainWindow.setFixedSize(762,563)
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
         self.commandLinkButton = QtGui.QCommandLinkButton(self.centralwidget)
@@ -48,7 +48,7 @@ class Ui_MainWindow(object):
         self.commandLinkButton_2.setStyleSheet(_fromUtf8("font: 15pt \"Agency FB\";"))
         self.commandLinkButton_2.setObjectName(_fromUtf8("commandLinkButton_2"))
         self.verticalLayoutWidget = QtGui.QWidget(self.centralwidget)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(10, 80, 741, 281))
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(10, 130, 751, 301))
         self.verticalLayoutWidget.setObjectName(_fromUtf8("verticalLayoutWidget"))
         self.verticalLayout_4 = QtGui.QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout_4.setObjectName(_fromUtf8("verticalLayout_4"))
@@ -56,16 +56,14 @@ class Ui_MainWindow(object):
         self.treeView.setObjectName(_fromUtf8("treeView"))
         self.verticalLayout_4.addWidget(self.treeView)
         self.verticalLayoutWidget_2 = QtGui.QWidget(self.centralwidget)
-        self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(210, 10, 331, 51))
+        self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(200, 30, 351, 91))
         self.verticalLayoutWidget_2.setObjectName(_fromUtf8("verticalLayoutWidget_2"))
         self.verticalLayout = QtGui.QVBoxLayout(self.verticalLayoutWidget_2)
         self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
         self.webView = QtWebKit.QWebView(self.verticalLayoutWidget_2)
         self.webView.setUrl(QtCore.QUrl(_fromUtf8("about:blank")))
         self.webView.setObjectName(_fromUtf8("webView"))
-        self.webView.setGeometry(100,100,100,100)
         self.verticalLayout.addWidget(self.webView)
-
         self.webView.load(QUrl('hello.html'))
 
         MainWindow.setCentralWidget(self.centralwidget)
@@ -378,7 +376,7 @@ class Ui_MainWindow(object):
 
         else:
 
-            os.system("REN " + '"' + str(new_path) + '"' + ' "' + str(new_name)  + '"' )
+            os.system("md " +'"' + str(new_path) + "\New folder" + '"' )
 
 
 from PyQt4 import QtWebKit
@@ -389,6 +387,7 @@ if __name__ == "__main__":
     import sys
     app = QtGui.QApplication(sys.argv)
     MainWindow = QtGui.QMainWindow()
+    app.setWindowIcon(QtGui.QIcon("skymanager1.jpg"))
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
     MainWindow.show()

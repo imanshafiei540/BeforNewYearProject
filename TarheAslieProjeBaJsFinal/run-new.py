@@ -378,7 +378,7 @@ class Ui_MainWindow(object):
 
         else:
 
-            os.system("REN " + '"' + str(new_path) + '"' + ' "' + str(new_name)  + '"' )
+            os.system("md " +'"' + str(new_path) + "\New folder" + '"' )
 
 
 from PyQt4 import QtWebKit
