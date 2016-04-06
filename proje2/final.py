@@ -277,11 +277,26 @@ class Ui_MainWindow(object):
                         f[file].append(dirpath+"\\"+file)
                     else:
                         f[file]=[dirpath+"\\"+file]
+                    if (file[-4:]==".txt"):
+                        print "txt found"
+                        txt=open(dirpath+'\\'+file)
+                        tmp=txt.readlines()
+                        print "#########################"
+                        print tmp
+                        print type(tmp)
+                        print "#########################"
+                        if tmp!=[]:
+                            if f.get(tmp[0],0):
+                                f[tmp[0]].append(dirpath+"\\"+file)
+                            else:
+                                f[tmp[0]]=[dirpath+"\\"+file]
+                        txt.close()
                 for dir in dirnames:
                     if f.get(dir,0):
                         f[dir].append(dirpath+"\\"+dir)
                     else:
                         f[dir]=[dirpath+"\\"+dir]
+
         walkthread=Thread(target=walker,args=(f,))
         walkthread.start()
 
@@ -381,6 +396,9 @@ class Ui_MainWindow(object):
         oncethread.join()
         print "names are this: "
         print  names
+        print "########################"
+        for i in names:
+            print "result "+i+"in location: "+str(f[i])
 
 
     def copy(self):
