@@ -7,8 +7,11 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt4 import QtCore, QtGui
-import socket
+from PyQt4.QtCore import *
+from PyQt4.QtGui import *
 
+import socket, json, sys, os
+global data
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
 except AttributeError:
@@ -67,23 +70,116 @@ class Ui_LoginWindow(object):
         self.label.setText(_translate("LoginWindow", "Username:", None))
         self.label_2.setText(_translate("LoginWindow", "Password : ", None))
     def sendInfo(self):
+        print self.username.text()
+        print self.password
+        print len(self.username.text())
+        print self.username.text() == 'iman'
+        userpass = open('userpass.txt', 'w')
+        userpass.write(self.username.text()+'\n'+self.password.text())
+        userpass.close()
 
-        network.send(self.username.text())
-        network.send(self.password.text())
-        permission = network.recv(1024)
+        userpass = open('userpass.txt', 'r')
+        UP = userpass.readlines()
+        print UP
+        UP[0] = UP[0].replace('\n', '')
+
+
+
+        file = open('database.txt', 'w')
+
+        lenght = network.recv(15)
+        network.send('True')
+        network.send(UP[0])
+        network.send(UP[1])
+
+        permission = network.recv(8)
         print permission
-        network.close
+        print lenght
+        if permission == 'accepted':
+            for i in range(int(lenght)/20000 + 1):
+
+                ln = network.recv(20000)
+                file.write(ln)
+                print ln
+            file.close()
+
+
+            permission = 1
+
+
+            if permission:
+                print 'hi'
+                file = open('database.txt', 'r')
+                data = file.readlines()
+                print data
+                print type(data[0])
+
+                data = eval(data[0])
+
+                window = Window()
+                window.show()
+
+            network.close
+
+
+
+class Window(QWidget):
+
+    def __init__(self):
+        QWidget.__init__(self)
+        self.treeView = QTreeView()
+        self.treeView.setContextMenuPolicy(Qt.CustomContextMenu)
+        self.treeView.customContextMenuRequested.connect(self.openMenu)
+        self.model = QStandardItemModel()
+        self.addItems(self.model, data)
+        self.treeView.setModel(self.model)
+        self.model.setHorizontalHeaderLabels([self.tr("Object")])
+        layout = QVBoxLayout()
+        layout.addWidget(self.treeView)
+        self.setLayout(layout)
+
+    def addItems(self, parent, elements):
+
+        for text, children in elements:
+            item = QStandardItem(text)
+            parent.appendRow(item)
+            if children:
+                self.addItems(item, children)
+
+    def openMenu(self, position):
+
+        indexes = self.treeView.selectedIndexes()
+        if len(indexes) > 0:
+
+            level = 0
+            index = indexes[0]
+            while index.parent().isValid():
+                index = index.parent()
+                level += 1
+
+        menu = QMenu()
+        if level == 0:
+            menu.addAction(self.tr("Edit person"))
+        elif level == 1:
+            menu.addAction(self.tr("Edit object/container"))
+        elif level == 2:
+            menu.addAction(self.tr("Edit object"))
+
+        menu.exec_(self.treeView.viewport().mapToGlobal(position))
+
+
 
 if __name__ == "__main__":
     import sys
     network = socket.socket()
     host = socket.gethostname()
-    port = 5001
+    port = 5003
     network.connect((host, port))
     app = QtGui.QApplication(sys.argv)
     LoginWindow = QtGui.QMainWindow()
     ui = Ui_LoginWindow()
     ui.setupUi(LoginWindow)
     LoginWindow.show()
+
     sys.exit(app.exec_())
 

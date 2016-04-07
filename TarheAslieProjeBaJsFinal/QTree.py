@@ -1,5 +1,6 @@
 from PyQt4 import QtGui
 from PyQt4 import QtCore
+import pickle
 import os
 
 dir_list = []
@@ -52,8 +53,10 @@ class Main(QtGui.QTreeView):
 
 
 if __name__ == '__main__':
+
     import sys
+
     app = QtGui.QApplication(sys.argv)
-    w = Main()
+    w=Main()
     w.show()
     sys.exit(app.exec_())
