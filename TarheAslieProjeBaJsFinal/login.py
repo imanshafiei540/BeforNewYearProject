@@ -113,11 +113,13 @@ class Ui_LoginWindow(object):
                 data = file.readlines()
                 print data
                 print type(data[0])
-
                 data = eval(data[0])
-
-                window = Window()
+                window = Window(data)
                 window.show()
+                Error      #put the error to stay in window :) :D :P
+
+                exit()
+
 
             network.close
 
@@ -125,16 +127,23 @@ class Ui_LoginWindow(object):
 
 class Window(QWidget):
 
-    def __init__(self):
+    def __init__(self,data):
         QWidget.__init__(self)
         self.treeView = QTreeView()
         self.treeView.setContextMenuPolicy(Qt.CustomContextMenu)
         self.treeView.customContextMenuRequested.connect(self.openMenu)
         self.model = QStandardItemModel()
-        self.addItems(self.model, data)
+        self.addItems(self.model,data)
         self.treeView.setModel(self.model)
         self.model.setHorizontalHeaderLabels([self.tr("Object")])
+        #in khat zirie bayad kara ro kone engar!
+        self.treeView.setDragDropMode(QAbstractItemView.InternalMove)
+        '''
+        self.view = QTreeView()
+        self.view.setModel(self.model)
+        self.view.setDragDropMode(QAbstractItemView.InternalMove)
         layout = QVBoxLayout()
+        '''
         layout.addWidget(self.treeView)
         self.setLayout(layout)
 

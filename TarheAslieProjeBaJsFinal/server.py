@@ -27,7 +27,7 @@ def toList(path, step , stepmax=2):
 
 print exit
 
-data = toList('C:\Users\Administrator\Desktop',1 ,  5)
+data = toList('C:\Users\Amirmohammad\BeforNewYearProject',1 ,  5)
 print 1
 
 
@@ -42,6 +42,7 @@ connection = True
 file = open('passdict.txt', 'r')
 info = file.readlines()
 info = eval(info[0])
+print info
 
 while connection:
     client, addr = network.accept()
