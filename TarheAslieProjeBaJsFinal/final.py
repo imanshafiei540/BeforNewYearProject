@@ -13,8 +13,11 @@ from PyQt4.QtWebKit import QWebView
 from PyQt4 import QtCore, QtGui
 from search import Search
 from Portal import Window
+from searcher import searchclass
 from history import history_window
 import os, re
+from threading import Thread
+from mainsearch import Ui_mainsearch
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -92,7 +95,7 @@ class Ui_MainWindow(object):
         MainWindow.setMenuBar(self.menuBar)
         self.actionSettings = QtGui.QAction(MainWindow)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(_fromUtf8(":/Project/settings_icon.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(_fromUtf8(":/Project/search_icon.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.actionSettings.setIcon(icon)
         self.actionSettings.setObjectName(_fromUtf8("actionSettings"))
         self.actionSettings_2 = QtGui.QAction(MainWindow)
@@ -183,7 +186,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         QtCore.QObject.connect(self.actionExit, QtCore.SIGNAL(_fromUtf8("triggered()")), MainWindow.close)
-        QtCore.QObject.connect(self.actionSettings_2, QtCore.SIGNAL(_fromUtf8("triggered()")), self.toolBar.hide)
+        QtCore.QObject.connect(self.actionSettings_2, QtCore.SIGNAL(_fromUtf8("triggered()")), self.searchtest)
         QtCore.QObject.connect(self.commandLinkButton_2, QtCore.SIGNAL(_fromUtf8("clicked()")), self.toolBar.show)
         QtCore.QObject.connect(self.commandLinkButton, QtCore.SIGNAL(_fromUtf8("clicked()")), self.toolBar.hide)
         QtCore.QObject.connect(self.actionCopy, QtCore.SIGNAL(_fromUtf8("triggered(bool)")), self.copy)
@@ -194,6 +197,7 @@ class Ui_MainWindow(object):
         QtCore.QObject.connect(self.actionNewfolder, QtCore.SIGNAL(_fromUtf8("triggered(bool)")), self.newFolder)
         QtCore.QObject.connect(self.actionSearch, QtCore.SIGNAL(_fromUtf8("triggered()")), self.openSearch)
         QtCore.QObject.connect(self.actionHistory, QtCore.SIGNAL(_fromUtf8("triggered()")), self.openHistory)
+        QtCore.QObject.connect(self.actionHome, QtCore.SIGNAL(_fromUtf8("triggered()")), self.searchtest)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -239,7 +243,172 @@ class Ui_MainWindow(object):
     def pasteScript(self):
         self.webView.load(QUrl('paste.html'))
 
+    def searchtest(self):
+        #sure searching here:
+        def suresearcher(item,names):
+            print names
+            deleter=[]
+            for unit in names:
+                if not (item in unit):
+                    print item +" is not in "+ unit
+                    deleter.append(unit)
+                else:
+                    print  item +" is in " + unit
+            for unit in deleter:
+                names.remove(unit)
+        test = searchclass()
+        test.part1()
+        path=str(self.treeView.getFilePath())
+        text1=test.text
+        names=[]
+        print path
+        from os import walk
+        f = {}
+        def walker(f):
+            for (dirpath, dirnames, filenames) in walk(path):
+                print "dirpath"
+                print dirpath
+                print "dirnames"
+                print dirnames
+                print "filenames"
+                print filenames
+                dirpath=dirpath.replace("/","\\")
+                for file in filenames:
+                    if f.get(file,0):
+                        f[file].append(dirpath+"\\"+file)
+                    else:
+                        f[file]=[dirpath+"\\"+file]
+                    if (file[-4:]==".txt"):
+                        print "txt found"
+                        txt=open(dirpath+'\\'+file)
+                        tmp=txt.readlines()
+                        print "#########################"
+                        print tmp
+                        print type(tmp)
+                        print "#########################"
+                        if tmp!=[]:
+                            if f.get(tmp[0],0):
+                                f[tmp[0]].append(dirpath+"\\"+file)
+                            else:
+                                f[tmp[0]]=[dirpath+"\\"+file]
+                        txt.close()
+                for dir in dirnames:
+                    if f.get(dir,0):
+                        f[dir].append(dirpath+"\\"+dir)
+                    else:
+                        f[dir]=[dirpath+"\\"+dir]
 
+        walkthread=Thread(target=walker,args=(f,))
+        walkthread.start()
+
+
+        def surer(text,names):
+            text=str(text).split()
+            for item in text:
+                if names!=[]:
+                    print "this item in for: "+item
+                    suresearcher(item,names)
+                    print "done"
+            print "text is "
+            print text
+            print "names are"
+            print  names
+
+        #not searching here:
+        def notsearcher(item,names):
+            print names
+            deleter=[]
+            for unit in names:
+                if (item in unit):
+                    print item +" is  in "+ unit
+                    deleter.append(unit)
+                else:
+                    print  item +" is not in " + unit
+            for unit in deleter:
+                names.remove(unit)
+
+        test = searchclass()
+        test.part2()
+        text2=test.text
+        print path
+        from os import walk
+        def noter(text,names):
+            text=str(text).split()
+            for item in text:
+                if names!=[]:
+                    print "this item in for: "+item
+                    notsearcher(item,names)
+                    print "done"
+            print "text is "
+            print text
+            print "names are"
+            print  names
+
+        #at least one searching here:
+        def oncesearch(item,text,names,deleter):
+            flag=False
+            for unit in text:
+                if unit in item:
+                    flag=True
+                    print "unit "+unit+ " is in item "+item
+                    break
+            if flag==False:
+                deleter.append(item)
+
+        test = searchclass()
+        test.part3()
+        text3=test.text
+
+        mainsearch = QtGui.QMainWindow()
+        ui = Ui_mainsearch()
+        ui.setupUi(mainsearch)
+        mainsearch.show()
+        Error #This is a handler error
+
+        file = open('searchdata.txt', 'w')
+        file.write()
+        print path
+        from os import walk
+        def oncer(text,names):
+            text=str(text).split()
+            deleter=[]
+            i=[]
+            for item in names:
+                if names!=[]:
+                    print "this item in for: "+item
+                    i.append(Thread(target=oncesearch,args=(item,text,names,deleter)))
+                    i[-1].start()
+                    #oncesearch(item,text,names,deleter)
+                    print "done"
+            for tred in i:
+                tred.join()
+            for unit in deleter:
+                names.remove(unit)
+        #showing results
+        names=f.keys()
+        surethread=Thread(target=surer,args=(text1,names))
+        notthread=Thread(target=noter,args=(text2,names))
+        oncethread=Thread(target=oncer,args=(text3,names))
+        walkthread.join()
+        print "f is this!!!!!:"
+        print f
+        print "with walk names are:"
+        print names
+        surethread.start()
+        surethread.join()
+        print "with suresearch names are:"
+        print names
+        notthread.start()
+        notthread.join()
+        print "with notsearch names are:"
+        print names
+        oncethread.start()
+        oncethread.join()
+        print "names are this: "
+        print  names
+        print "########################"
+        for i in names:
+            print "result "+i+"in location: "+str(f[i])
 
 
 
@@ -377,6 +546,8 @@ class Ui_MainWindow(object):
         else:
 
             os.system("md " +'"' + str(new_path) + "\New folder" + '"' )
+
+
 
 
 from PyQt4 import QtWebKit
